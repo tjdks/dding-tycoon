@@ -9,6 +9,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
     <link rel="stylesheet" href="style.css">
+
+    <link rel="stylesheet" href="calc.css">
 </head>
 <body>
 
@@ -52,10 +54,39 @@
         <!-- 해양 -->
         <section id="ocean" class="tab" style="display:none;">
             <h2>해양</h2>
-            <p>여기에 해양 계산기 작성.</p>
+
+            <!-- 해양 계산기 시작 -->
+            <div id="ocean-calculator" class="calculator">
+                <p>보유한 어패류 수량을 입력하세요 (1~3성)</p>
+
+                <table class="input-table">
+                    <thead>
+                        <tr>
+                            <th>어패류</th>
+                            <th>1성</th>
+                            <th>2성</th>
+                            <th>3성</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>굴</td><td><input type="number" id="굴1" value="0"></td><td><input type="number" id="굴2" value="0"></td><td><input type="number" id="굴3" value="0"></td></tr>
+                        <tr><td>소라</td><td><input type="number" id="소라1" value="0"></td><td><input type="number" id="소라2" value="0"></td><td><input type="number" id="소라3" value="0"></td></tr>
+                        <tr><td>문어</td><td><input type="number" id="문어1" value="0"></td><td><input type="number" id="문어2" value="0"></td><td><input type="number" id="문어3" value="0"></td></tr>
+                        <tr><td>미역</td><td><input type="number" id="미역1" value="0"></td><td><input type="number" id="미역2" value="0"></td><td><input type="number" id="미역3" value="0"></td></tr>
+                        <tr><td>성게</td><td><input type="number" id="성게1" value="0"></td><td><input type="number" id="성게2" value="0"></td><td><input type="number" id="성게3" value="0"></td></tr>
+                    </tbody>
+                </table>
+
+                <button id="calculateBtn">계산하기</button>
+
+                <div id="result"></div>
+            </div>
+            <!-- 해양 계산기 끝 -->
+
         </section>
     </main>
 
     <script src="script.js"></script>
+    <script src="calc.js"></script>
 </body>
 </html>
