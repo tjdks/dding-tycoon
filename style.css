@@ -30,6 +30,9 @@ nav a {
 
 nav a.active {
     border-bottom: 2px solid white;
+    background-color: #2e76ff;
+    color: white;
+    border-radius: 5px;
 }
 
 main {
