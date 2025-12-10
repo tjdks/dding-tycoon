@@ -3,32 +3,34 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>띵타이쿤 계산기</title>
+    <title>🍎띵타이쿤 계산기</title>
     
     <!-- Font Awesome 아이콘 -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
     <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
 
     <header>
-        <h1>띵타이쿤 계산기</h1>
+        <!-- 타이틀 클릭 시 홈으로 이동 -->
+        <h1 onclick="openTab('home', document.getElementById('tab-home'))" style="cursor:pointer;">
+            🍎띵타이쿤 계산기
+        </h1>
     </header>
 
     <!-- 탭 메뉴 -->
     <nav>
-        <a id="tab-home" onclick="openTab('home')" class="home-btn">
+        <div id="slider"></div> <!-- 슬라이더 배경 -->
+        <a id="tab-home" onclick="openTab('home', this)" class="home-btn">
             <i class="fa-solid fa-house"></i>
         </a>
-        <a id="tab-mine" onclick="openTab('mine')">채광</a>
-        <a id="tab-farm" onclick="openTab('farm')">재배</a>
-        <a id="tab-ocean" onclick="openTab('ocean')">해양</a>
+        <a id="tab-mine" onclick="openTab('mine', this)">채광</a>
+        <a id="tab-farm" onclick="openTab('farm', this)">재배</a>
+        <a id="tab-ocean" onclick="openTab('ocean', this)">해양</a>
     </nav>
 
     <main>
-
         <!-- 홈 화면 -->
         <section id="home" class="tab">
             <h2>홈</h2>
@@ -52,7 +54,6 @@
             <h2>해양</h2>
             <p>여기에 해양 계산기 작성.</p>
         </section>
-
     </main>
 
     <script src="script.js"></script>

@@ -5,40 +5,7 @@ body {
     background-color: #f8f7f7;
 }
 
-/* nav 바탕 높이 증가 */
-nav {
-    background-color: #20232a;
-    padding: 10px 12px;  /* ↑ 전체 높이를 늘림 */
-    display: flex;
-    align-items: center;
-}
-
-/* nav 기본 버튼 */
-nav a {
-    color: white;
-    text-decoration: none;
-    margin-right: 18px;
-    padding: 7px 14px;
-    border-radius: 6px;
-    cursor: pointer;
-    font-size: 15px;
-}
-
-/* 홈 버튼은 조금 더 크게 */
-nav a.home-btn {
-    font-size: 20px;
-    padding: 6px 12px;
-    margin-right: 25px;
-}
-
-/* 선택된 탭 */
-nav a.active {
-    background-color: #2e76ff;
-    color: white;
-    font-weight: bold;
-    border-bottom: 2px solid white;
-}
-
+/* header */
 header {
     background-color: #20232a;
     padding: 10px 20px;
@@ -47,9 +14,63 @@ header {
 
 header h1 {
     margin: 0;
-    font-size: 1.5em;
+    font-size: 1.8em;
+    cursor: pointer;
+    user-select: none;
 }
 
+/* nav 바탕 */
+nav {
+    position: relative; /* 슬라이더 위치 기준 */
+    background-color: #20232a;
+    padding: 10px 12px;
+    display: flex;
+    align-items: center;
+}
+
+/* 슬라이더 배경 */
+#slider {
+    position: absolute;
+    top: 50%;                  /* 버튼 중앙 정렬 */
+    left: 0;
+    height: 40px;              /* 버튼 높이에 맞춤 */
+    width: 0;
+    background-color: #2e76ff;
+    border-radius: 6px;
+    transition: all 0.3s ease;
+    z-index: 0;
+    transform: translateY(-50%); /* 세로 중앙 정렬 */
+}
+
+/* nav 버튼 */
+nav a {
+    position: relative;
+    z-index: 1;
+    color: white;
+    text-decoration: none;
+    margin-right: 18px;
+    padding: 7px 14px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 15px;
+    outline: none;
+    display: inline-block;
+}
+
+/* 홈 버튼 조금 더 크게 */
+nav a.home-btn {
+    font-size: 20px;
+    padding: 6px 12px;
+    margin-right: 25px;
+}
+
+/* 선택된 탭 글씨 강조 */
+nav a.active {
+    color: white;
+    font-weight: bold;
+}
+
+/* main 영역 */
 main {
     padding: 20px;
 }
