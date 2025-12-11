@@ -47,7 +47,7 @@ nav {
     z-index: 0;
 }
 
-/* nav 버튼 */
+/* nav 버튼 기본 */
 nav a {
     position: relative;
     z-index: 1;
@@ -60,19 +60,30 @@ nav a {
     font-size: 15px;
     outline: none;
     display: inline-block;
+    transition: background 0.2s, color 0.2s;
 }
 
 /* 홈 버튼 */
 nav a.home-btn {
-    font-size: 20px;
+    font-size: 18px;
     padding: 6px 12px;
-    margin-right: 25px;
+    margin-right: 18px;
 }
 
-/* 선택된 탭 강조 */
+/* 탭 선택 시 강조 */
 nav a.active {
     color: white;
+    background: #2868ff;
     font-weight: bold;
+}
+
+/* 슬라이더 스타일 (파란색 바탕 강조) */
+#slider {
+    position: absolute;
+    background-color: rgba(40,104,255,0.2);
+    border-radius: 6px;
+    z-index: 0;
+    transition: all 0.25s ease;
 }
 
 /* main 마진 (헤더 높이 고려) */

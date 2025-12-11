@@ -4,14 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>🍎띵타이쿤 계산기</title>
-
-    <!-- Font Awesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="calc.css">
+    <script src="calc.js" defer></script>
+    <script src="script.js" defer></script>
 </head>
 <body>
-
 <header>
     <h1 onclick="openTab('home', document.getElementById('tab-home'))">🍎띵타이쿤 계산기</h1>
     <nav>
@@ -26,116 +24,53 @@
 </header>
 
 <main>
-    <!-- 홈 -->
     <section id="home" class="tab" style="display:block;">
         <h2>홈</h2>
         <p>기본 틀입니다.</p>
     </section>
 
-    <!-- 채광 -->
     <section id="mine" class="tab">
         <h2>채광</h2>
         <p>채광 계산기를 여기에 작성하세요.</p>
     </section>
 
-    <!-- 재배 -->
     <section id="farm" class="tab">
         <h2>재배</h2>
         <p>재배 계산기를 여기에 작성하세요.</p>
     </section>
 
-    <!-- 해양 -->
     <section id="ocean" class="tab">
         <h2>해양</h2>
-
         <div class="ocean-container">
-
-            <!-- 왼쪽 어패류 입력 섹션 -->
             <div class="ocean-left">
                 <h3 class="title-center">보유한 어패류 수량을 입력하세요</h3>
-
-                <!-- 입력 모드 토글 -->
-                <div class="mode-buttons">
-                    <button id="normalModeBtn" class="active-mode">일반 입력</button>
-                    <button id="setModeBtn">세트 / 낱개 입력</button>
-                </div>
-
-                <!-- 어패류 입력 섹션 -->
                 <div id="fishSection">
-                    <div class="fish-row header">
-                        <div class="fish-label">어패류</div>
-                        <div class="fish-label">수량</div>
-                        <div></div>
-                    </div>
-
                     <div class="fish-row">
                         <div class="fish-label">★굴</div>
-                        <div class="input-area">
-                            <input id="굴" type="number" class="fish-input normal-input">
-                            <div class="split-input" style="display:none;">
-                                <input id="굴_set" type="number" placeholder="세트">
-                                <span>/</span>
-                                <input id="굴_single" type="number" placeholder="낱개">
-                            </div>
-                        </div>
+                        <div class="input-area"><input id="굴" type="number"></div>
                     </div>
-
                     <div class="fish-row">
                         <div class="fish-label">★소라</div>
-                        <div class="input-area">
-                            <input id="소라" type="number" class="fish-input normal-input">
-                            <div class="split-input" style="display:none;">
-                                <input id="소라_set" type="number" placeholder="세트">
-                                <span>/</span>
-                                <input id="소라_single" type="number" placeholder="낱개">
-                            </div>
-                        </div>
+                        <div class="input-area"><input id="소라" type="number"></div>
                     </div>
-
                     <div class="fish-row">
                         <div class="fish-label">★문어</div>
-                        <div class="input-area">
-                            <input id="문어" type="number" class="fish-input normal-input">
-                            <div class="split-input" style="display:none;">
-                                <input id="문어_set" type="number" placeholder="세트">
-                                <span>/</span>
-                                <input id="문어_single" type="number" placeholder="낱개">
-                            </div>
-                        </div>
+                        <div class="input-area"><input id="문어" type="number"></div>
                     </div>
-
                     <div class="fish-row">
                         <div class="fish-label">★미역</div>
-                        <div class="input-area">
-                            <input id="미역" type="number" class="fish-input normal-input">
-                            <div class="split-input" style="display:none;">
-                                <input id="미역_set" type="number" placeholder="세트">
-                                <span>/</span>
-                                <input id="미역_single" type="number" placeholder="낱개">
-                            </div>
-                        </div>
+                        <div class="input-area"><input id="미역" type="number"></div>
                     </div>
-
                     <div class="fish-row">
                         <div class="fish-label">★성게</div>
-                        <div class="input-area">
-                            <input id="성게" type="number" class="fish-input normal-input">
-                            <div class="split-input" style="display:none;">
-                                <input id="성게_set" type="number" placeholder="세트">
-                                <span>/</span>
-                                <input id="성게_single" type="number" placeholder="낱개">
-                            </div>
-                        </div>
+                        <div class="input-area"><input id="성게" type="number"></div>
                     </div>
-
                 </div>
-
                 <div class="calc-button-area">
                     <button id="calcBtn">계산하기</button>
                 </div>
             </div>
 
-            <!-- 오른쪽 기존 정수·핵 입력 토글 -->
             <div class="ocean-right">
                 <button id="toggleExisting" class="toggle-btn">기존 정수·핵 보유량 입력 열기/닫기</button>
                 <div id="existingInputs" style="display:none; margin-top:10px;">
@@ -145,7 +80,6 @@
                     <input id="eC_exist" type="number" placeholder="혼란">
                     <input id="eL_exist" type="number" placeholder="생명">
                     <input id="eCo_exist" type="number" placeholder="부식">
-
                     <h3>핵 보유량</h3>
                     <input id="cWG_exist" type="number" placeholder="물결 수호">
                     <input id="cWP_exist" type="number" placeholder="파동 오염">
@@ -154,46 +88,9 @@
                     <input id="cED_exist" type="number" placeholder="침식 방어">
                 </div>
             </div>
-
         </div>
-
-        <div id="result"></div>
+        <div id="result" style="white-space: pre-line; margin-top:20px;"></div>
     </section>
 </main>
-
-<script src="script.js"></script>
-<script src="calc.js"></script>
-
-<script>
-    // 모드 버튼 전환
-    window.inputMode = 'normal';
-    const normalBtn = document.getElementById('normalModeBtn');
-    const setBtn = document.getElementById('setModeBtn');
-
-    normalBtn.addEventListener('click', () => {
-        window.inputMode = 'normal';
-        normalBtn.classList.add('active-mode');
-        setBtn.classList.remove('active-mode');
-
-        document.querySelectorAll('.normal-input').forEach(i => i.style.display = 'block');
-        document.querySelectorAll('.split-input').forEach(i => i.style.display = 'none');
-    });
-
-    setBtn.addEventListener('click', () => {
-        window.inputMode = 'set';
-        setBtn.classList.add('active-mode');
-        normalBtn.classList.remove('active-mode');
-
-        document.querySelectorAll('.normal-input').forEach(i => i.style.display = 'none');
-        document.querySelectorAll('.split-input').forEach(i => i.style.display = 'flex');
-    });
-
-    // 기존 입력창 토글
-    document.getElementById('toggleExisting').addEventListener('click', () => {
-        const el = document.getElementById('existingInputs');
-        el.style.display = el.style.display === 'none' ? 'block' : 'none';
-    });
-</script>
-
 </body>
 </html>

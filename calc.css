@@ -1,15 +1,10 @@
-/* 해양 레이아웃 */
 .ocean-container { display:flex; gap:30px; margin-top:15px; }
 .ocean-left { flex:1; }
 .ocean-right { width:260px; padding:20px; background:#fafafa; border:1px solid #e5e5e5; border-radius:12px; box-shadow: inset 0 0 6px rgba(0,0,0,0.04); }
 .title-center { text-align:center; margin-bottom:15px; }
-
-/* 입력 모드 버튼 */
 .mode-buttons { display:flex; gap:10px; margin-bottom:20px; }
 .mode-buttons button { padding:8px 15px; border:1px solid #ccc; background:white; border-radius:8px; cursor:pointer; }
 .active-mode { background:#2868ff; color:white; }
-
-/* 어패류 입력 행 */
 .fish-row { display:grid; grid-template-columns:120px 200px auto; align-items:center; background:#eee; padding:10px; border-radius:8px; margin-bottom:10px; }
 .fish-row.header { background:transparent; font-weight:bold; }
 .fish-label { padding-left:10px; }
@@ -17,21 +12,12 @@
 .fish-input { width:150px; padding:7px; border:1px solid #ccc; border-radius:6px; text-align:center; -moz-appearance:textfield; }
 .split-input { display:flex; align-items:center; gap:5px; }
 .split-input input { width:65px; padding:7px; border-radius:6px; border:1px solid #ccc; -moz-appearance:textfield; }
-.fish-input::-webkit-inner-spin-button,
-.fish-input::-webkit-outer-spin-button,
-.split-input input::-webkit-inner-spin-button,
-.split-input input::-webkit-outer-spin-button,
-.ocean-right input::-webkit-inner-spin-button,
-.ocean-right input::-webkit-outer-spin-button { -webkit-appearance:none; margin:0; }
-
-/* 계산 버튼 */
+.fish-input::-webkit-inner-spin-button, .fish-input::-webkit-outer-spin-button,
+.split-input input::-webkit-inner-spin-button, .split-input input::-webkit-outer-spin-button,
+.ocean-right input::-webkit-inner-spin-button, .ocean-right input::-webkit-outer-spin-button { -webkit-appearance:none; margin:0; }
 .calc-button-area { display:flex; justify-content:flex-end; margin-top:20px; }
 #calcBtn { padding:10px 25px; background:#2868ff; color:white; border-radius:8px; border:none; cursor:pointer; }
-
-/* 기존 정수·핵 입력 토글 */
 .toggle-btn { padding:10px 14px; background-color:transparent; color:rgb(34,34,34); font-weight:bold; font-size:13px; border:1px dashed #cfcfcf; border-radius:8px; cursor:pointer; transition:0.18s; }
 .toggle-btn:hover { background-color:#f0f0f0; }
-
-/* 결과창 */
-#result { margin-top:14px; background:rgba(220,220,220,0.18); padding:14px; border-radius:10px; text-align:left; font-size:14px; min-height:36px; }
+#result { margin-top:14px; background:rgba(220,220,220,0.18); padding:14px; border-radius:10px; text-align:left; font-size:14px; min-height:36px; white-space:pre-line; }
 .result-divider { border-top:1px solid rgba(0,0,0,0.12); margin:12px 0; }

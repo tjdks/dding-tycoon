@@ -1,133 +1,55 @@
-// 어패류 → 정수
-const fishToInteger = {
-    '굴': '수호',
-    '소라': '파동',
-    '문어': '혼란',
-    '미역': '생명',
-    '성게': '부식'
-};
+function calculateCoreOptimization(input){
+    let g = input.g||0, s=input.s||0, o=input.o||0, m=input.m||0, u=input.u||0;
+    let eG_exist=input.eG_exist||0, eW_exist=input.eW_exist||0, eC_exist=input.eC_exist||0, eL_exist=input.eL_exist||0, eCo_exist=input.eCo_exist||0;
+    let cWG_exist=input.cWG_exist||0, cWP_exist=input.cWP_exist||0, cOD_exist=input.cOD_exist||0, cVD_exist=input.cVD_exist||0, cED_exist=input.cED_exist||0;
 
-// 정수 → 핵 필요량 (생선 포함)
-const nucleusNeed = {
-    '물결 수호': {'수호':1,'파동':1,'새우':1},
-    '파동 오염': {'파동':1,'혼란':1,'도미':1},
-    '질서 파괴': {'혼란':1,'생명':1,'청어':1},
-    '활력 붕괴': {'생명':1,'부식':1,'금붕어':1},
-    '침식 방어': {'부식':1,'수호':1,'농어':1}
-};
+    let tot_eG = eG_exist+g, tot_eW = eW_exist+s, tot_eC = eC_exist+o, tot_eL = eL_exist+m, tot_eCo = eCo_exist+u;
 
-// 최종 결과물 → 필요한 핵 + 가격
-const finalProduct = {
-    '영생의 아쿠티스': {'핵':['물결 수호','질서 파괴','활력 붕괴'], '가격':2403},
-    '크라켄의 광란체': {'핵':['질서 파괴','활력 붕괴','파동 오염'], '가격':2438},
-    '리바이던의 깃털': {'핵':['침식 방어','파동 오염','물결 수호'], '가격':2512}
-};
+    let bestGold=-1, bestA=0, bestK=0, bestL=0;
+    let core_upper = Math.max(10, Math.min(200, tot_eG+tot_eW+tot_eC+tot_eL+tot_eCo));
 
-// 사용 가능한 생선/블록 (충분히 있다고 가정)
-const fishForNucleus = ['새우','도미','청어','금붕어','농어'];
-const blocks = ['점토','모래','흙','자갈','화강암'];
+    for(let A=0;A<=core_upper;A++){
+        for(let K=0;K<=core_upper;K++){
+            for(let L=0;L<=core_upper;L++){
+                let need_WG = A+L, need_WP=K+L, need_OD=A+K, need_VD=A+K, need_ED=L;
+                let make_WG=Math.max(0,need_WG-cWG_exist);
+                let make_WP=Math.max(0,need_WP-cWP_exist);
+                let make_OD=Math.max(0,need_OD-cOD_exist);
+                let make_VD=Math.max(0,need_VD-cVD_exist);
+                let make_ED=Math.max(0,need_ED-cED_exist);
 
-// 계산 버튼 클릭
-document.getElementById('calcBtn').addEventListener('click',()=>{
-    // 1️⃣ 입력 어패류
-    const fishQty = {};
-    ['굴','소라','문어','미역','성게'].forEach(f=>{
-        fishQty[f] = parseInt(document.getElementById(f).value||0);
-    });
+                let req_eG = make_WG+make_ED;
+                let req_eW = make_WG+make_WP;
+                let req_eC = make_WP+make_OD;
+                let req_eL = make_OD+make_VD;
+                let req_eCo = make_VD+make_ED;
 
-    // 정수 계산
-    const integers = {};
-    for (let f in fishQty) integers[fishToInteger[f]] = fishQty[f];
+                if(req_eG>tot_eG||req_eW>tot_eW||req_eC>tot_eC||req_eL>tot_eL||req_eCo>tot_eCo) continue;
 
-    // 2️⃣ 브루트포스로 최대 골드 조합 계산
-    let maxGold = 0;
-    let bestCombo = {'영생의 아쿠티스':0,'크라켄의 광란체':0,'리바이던의 깃털':0};
-    let usedIntegers = {};
-    let usedNucleus = {};
-
-    // 최종 결과물 최대 생성 가능 수
-    const maxCount = {};
-    for(let key in finalProduct){
-        const need = {'수호':0,'파동':0,'혼란':0,'생명':0,'부식':0};
-        finalProduct[key]['핵'].forEach(nuc=>{
-            for(let intg in nucleusNeed[nuc]){
-                if(['수호','파동','혼란','생명','부식'].includes(intg)){
-                    need[intg] += nucleusNeed[nuc][intg];
-                }
-            }
-        });
-        maxCount[key] = Math.min(...Object.keys(need).map(k=>need[k]?Math.floor(integers[k]/need[k]):Infinity));
-    }
-
-    // 브루트포스
-    for(let a=0;a<=maxCount['영생의 아쿠티스'];a++){
-        for(let b=0;b<=maxCount['크라켄의 광란체'];b++){
-            for(let c=0;c<=maxCount['리바이던의 깃털'];c++){
-                // 필요한 정수 합계
-                const needInt = {'수호':0,'파동':0,'혼란':0,'생명':0,'부식':0};
-                const needNuc = {'물결 수호':0,'파동 오염':0,'질서 파괴':0,'활력 붕괴':0,'침식 방어':0};
-                const addReq = (count,key)=>{
-                    finalProduct[key]['핵'].forEach(nuc=>{
-                        needNuc[nuc] += count;
-                        for(let intg in nucleusNeed[nuc]){
-                            if(['수호','파동','혼란','생명','부식'].includes(intg)){
-                                needInt[intg] += nucleusNeed[nuc][intg]*count;
-                            }
-                        }
-                    });
-                };
-                addReq(a,'영생의 아쿠티스');
-                addReq(b,'크라켄의 광란체');
-                addReq(c,'리바이던의 깃털');
-
-                let ok = true;
-                for(let k in needInt) if(needInt[k]>integers[k]) ok=false;
-                if(!ok) continue;
-
-                const total = a*finalProduct['영생의 아쿠티스']['가격'] + b*finalProduct['크라켄의 광란체']['가격'] + c*finalProduct['리바이던의 깃털']['가격'];
-                if(total>maxGold){
-                    maxGold = total;
-                    bestCombo = {'영생의 아쿠티스':a,'크라켄의 광란체':b,'리바이던의 깃털':c};
-                    usedIntegers = {};
-                    for(let k in integers) usedIntegers[k] = needInt[k];
-                    usedNucleus = {...needNuc};
-                }
+                let gold = A*2403+K*2438+L*2512;
+                if(gold>bestGold){ bestGold=gold; bestA=A; bestK=K; bestL=L; }
             }
         }
     }
 
-    // 출력
-    const resultDiv = document.getElementById('result');
-    resultDiv.innerHTML = `
-💰 총 획득 골드 : ${maxGold}<br>
-리바이던의 깃털 : ${bestCombo['리바이던의 깃털']}<br>
-크라켄의 광란체 : ${bestCombo['크라켄의 광란체']}<br>
-영생의 아쿠티스 : ${bestCombo['영생의 아쿠티스']}<br>
+    if(bestGold<0) return null;
 
-<hr style="border:0;border-top:1px solid #ccc;margin:6px 0;">
+    let used_WG=bestA+bestL, used_WP=bestK+bestL, used_OD=bestA+bestK, used_VD=bestA+bestK, used_ED=bestL;
+    let needMake_WG=Math.max(0,used_WG-cWG_exist), needMake_WP=Math.max(0,used_WP-cWP_exist),
+        needMake_OD=Math.max(0,used_OD-cOD_exist), needMake_VD=Math.max(0,used_VD-cVD_exist),
+        needMake_ED=Math.max(0,used_ED-cED_exist);
 
-<strong>정수 ( 필요 / 잔여 )</strong><br>
-수호 : ${usedIntegers['수호']} / ${integers['수호']-usedIntegers['수호']}<br>
-파동 : ${usedIntegers['파동']} / ${integers['파동']-usedIntegers['파동']}<br>
-혼란 : ${usedIntegers['혼란']} / ${integers['혼란']-usedIntegers['혼란']}<br>
-생명 : ${usedIntegers['생명']} / ${integers['생명']-usedIntegers['생명']}<br>
-부식 : ${usedIntegers['부식']} / ${integers['부식']-usedIntegers['부식']}<br>
+    let make_eG=Math.max(0,needMake_WG+needMake_ED-eG_exist);
+    let make_eW=Math.max(0,needMake_WG+needMake_WP-eW_exist);
+    let make_eC=Math.max(0,needMake_WP+needMake_OD-eC_exist);
+    let make_eL=Math.max(0,needMake_OD+needMake_VD-eL_exist);
+    let make_eCo=Math.max(0,needMake_VD+needMake_ED-eCo_exist);
 
-<hr style="border:0;border-top:1px solid #ccc;margin:6px 0;">
+    let need_clay=make_eG*2, need_sand=make_eW*3, need_dirt=make_eC*4, need_gravel=make_eL*3, need_granite=make_eCo*1;
+    let need_shrimp=needMake_WG, need_domi=needMake_WP, need_herring=needMake_OD, need_goldfish=needMake_VD, need_bass=needMake_ED;
 
-<strong>핵 ( 필요 / 잔여 )</strong><br>
-물결 수호 : ${usedNucleus['물결 수호']} / -<br>
-파동 오염 : ${usedNucleus['파동 오염']} / -<br>
-질서 파괴 : ${usedNucleus['질서 파괴']} / -<br>
-활력 붕괴 : ${usedNucleus['활력 붕괴']} / -<br>
-침식 방어 : ${usedNucleus['침식 방어']} / -<br>
-
-<hr style="border:0;border-top:1px solid #ccc;margin:6px 0;">
-
-<strong>제작에 필요한 생선</strong><br>
-새우 : ${usedNucleus['물결 수호']} , 도미 : ${usedNucleus['파동 오염']} , 청어 : ${usedNucleus['질서 파괴']} , 금붕어 : ${usedNucleus['활력 붕괴']} , 농어 : ${usedNucleus['침식 방어']}<br>
-
-<strong>제작에 필요한 블록</strong><br>
-점토 : ${fishQty['굴']} , 모래 : ${fishQty['소라']} , 흙 : ${fishQty['문어']} , 자갈 : ${fishQty['미역']} , 화강암 : ${fishQty['성게']}
-    `;
-});
+    return {bestA,bestK,bestL,bestGold,make_eG,make_eW,make_eC,make_eL,make_eCo,
+        needMake_WG,needMake_WP,needMake_OD,needMake_VD,needMake_ED,
+        need_clay,need_sand,need_dirt,need_gravel,need_granite,
+        need_shrimp,need_domi,need_herring,need_goldfish,need_bass};
+}
