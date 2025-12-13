@@ -44,40 +44,60 @@
         <button class="sub-tab" onclick="openSubTab('ocean-crafting', this)">공예품</button>
     </div>
 
-    <!-- 하위 탭 콘텐츠 -->
-    <div id="ocean-expert" class="sub-tab-content" style="display:block;">
-        <div class="flex-container">
-            <!-- 입력 카드 -->
-            <div class="fish-section-box">
-                <div class="fish-row"><div class="fish-label">굴★</div><div class="input-area"><input id="ocean-굴" type="number"></div></div>
-                <div class="fish-row"><div class="fish-label">소라★</div><div class="input-area"><input id="ocean-소라" type="number"></div></div>
-                <div class="fish-row"><div class="fish-label">문어★</div><div class="input-area"><input id="ocean-문어" type="number"></div></div>
-                <div class="fish-row"><div class="fish-label">미역★</div><div class="input-area"><input id="ocean-미역" type="number"></div></div>
-                <div class="fish-row"><div class="fish-label">성게★</div><div class="input-area"><input id="ocean-성게" type="number"></div></div>
+<!-- 전문가 입력 탭 -->
+<div id="ocean-expert" class="sub-tab-content" style="display:block;">
+    <p>전문가 입력 설명 영역 (추후 사용)</p>
+</div>
 
-                <button id="ocean-calcBtn" class="classic-btn">계산하기</button>
-                <button id="ocean-toggleExisting" class="toggle-btn">기존 정수·핵 입력</button>
+<!-- 최대 골드 조합 탭 -->
+<div id="ocean-maxGold" class="sub-tab-content" style="display:none;">
+    <div class="flex-container">
+        <!-- 입력 카드 -->
+        <div class="fish-section-box">
+            <div class="fish-row">
+                <div class="fish-label">굴★</div>
+                <div class="input-area"><input id="ocean-굴" type="number"></div>
+            </div>
+            <div class="fish-row">
+                <div class="fish-label">소라★</div>
+                <div class="input-area"><input id="ocean-소라" type="number"></div>
+            </div>
+            <div class="fish-row">
+                <div class="fish-label">문어★</div>
+                <div class="input-area"><input id="ocean-문어" type="number"></div>
+            </div>
+            <div class="fish-row">
+                <div class="fish-label">미역★</div>
+                <div class="input-area"><input id="ocean-미역" type="number"></div>
+            </div>
+            <div class="fish-row">
+                <div class="fish-label">성게★</div>
+                <div class="input-area"><input id="ocean-성게" type="number"></div>
             </div>
 
-            <!-- 기존 정수/핵 입력 영역 -->
-            <div id="ocean-existingInputs">
-                <input id="ocean-eG_exist" type="number" placeholder="수호">
-                <input id="ocean-eW_exist" type="number" placeholder="파동">
-                <input id="ocean-eC_exist" type="number" placeholder="혼란">
-                <input id="ocean-eL_exist" type="number" placeholder="생명">
-                <input id="ocean-eCo_exist" type="number" placeholder="부식">
-                <hr>
-                <input id="ocean-cWG_exist" type="number" placeholder="물결 수호">
-                <input id="ocean-cWP_exist" type="number" placeholder="파동 오염">
-                <input id="ocean-cOD_exist" type="number" placeholder="질서 파괴">
-                <input id="ocean-cVD_exist" type="number" placeholder="활력 붕괴">
-                <input id="ocean-cED_exist" type="number" placeholder="침식 방어">
-            </div>
-
-            <!-- 결과창 -->
-            <div id="ocean-result" class="result-box"></div>
+            <button id="ocean-calcBtn" class="classic-btn">계산하기</button>
+            <button id="ocean-toggleExisting" class="toggle-btn">기존 정수·핵 입력</button>
         </div>
+
+        <!-- 기존 정수/핵 입력 -->
+        <div id="ocean-existingInputs">
+            <input id="ocean-eG_exist" type="number" placeholder="수호">
+            <input id="ocean-eW_exist" type="number" placeholder="파동">
+            <input id="ocean-eC_exist" type="number" placeholder="혼란">
+            <input id="ocean-eL_exist" type="number" placeholder="생명">
+            <input id="ocean-eCo_exist" type="number" placeholder="부식">
+            <hr>
+            <input id="ocean-cWG_exist" type="number" placeholder="물결 수호">
+            <input id="ocean-cWP_exist" type="number" placeholder="파동 오염">
+            <input id="ocean-cOD_exist" type="number" placeholder="질서 파괴">
+            <input id="ocean-cVD_exist" type="number" placeholder="활력 붕괴">
+            <input id="ocean-cED_exist" type="number" placeholder="침식 방어">
+        </div>
+
+        <!-- 결과창 -->
+        <div id="ocean-result" class="result-box"></div>
     </div>
+</div>
 
     <div id="ocean-maxGold" class="sub-tab-content" style="display:none;">
         <p>최대 골드 조합 계산기 내용</p>
