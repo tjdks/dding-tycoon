@@ -29,13 +29,21 @@
     cursor: pointer;
     font-size: 0.9rem;
     background: #fafafa;
-    transition: all 0.2s ease;
+    transition: background 0.2s ease; /* 색상만 부드럽게 변경 */
+    text-align: center;
+    user-select: none;
 }
 
+/* 선택된 상태 */
 .star-toggle input:checked + label {
     background: #1e6fd9;
     color: #fff;
     border-color: #1e6fd9;
+}
+
+/* 마우스 오버 시 (색상만 변경) */
+.star-toggle label:hover {
+    background: #d0e4ff;
 }
 
 /* =========================
