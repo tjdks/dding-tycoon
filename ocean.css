@@ -243,6 +243,60 @@ input[type=number] {
 
 
 
+/* 낚싯대 스펙 블록 - 기존 카드 느낌 + 생동감 */
+#tab-info #info-expert-rod-row {
+    display: flex;
+    align-items: center;
+    justify-content: center; /* 블록 가운데 정렬 */
+    padding: 12px 20px;
+    max-width: 300px;
+    margin: 20px auto;
+    border-radius: 12px;
+    box-shadow: 0 6px 15px rgba(0,0,0,0.08);
+    background-size: 200% auto;
+    color: #2a3f54; /* 기존 카드 글자 색과 유사 */
+    font-weight: 500;
+    text-align: center;
+    cursor: default;
+    transition: transform 0.3s ease, box-shadow 0.3s ease, background-position 0.5s ease;
+    background-image: linear-gradient(to right, #f7f9fc 0%, #e4ebf5 51%, #f7f9fc 100%); /* 기존 카드 느낌 */
+}
+
+/* 블록 호버 시 생동감 효과 */
+#tab-info #info-expert-rod-row:hover {
+    transform: translateY(-3px); /* 살짝 떠오르는 느낌 */
+    box-shadow: 0 10px 25px rgba(0,0,0,0.12);
+    background-position: right center; /* 그라데이션 이동 */
+}
+
+/* 레이블 */
+#tab-info #info-expert-rod-row .fish-label {
+    margin-right: 12px;
+    white-space: nowrap;
+    font-weight: 600;
+    color: #2a3f54; /* 기존 카드와 동일 */
+}
+
+/* 입력창 */
+#tab-info #info-expert-rod-row input {
+    width: 80px;
+    padding: 6px 10px;
+    font-size: 0.95rem;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    text-align: right;
+    background-color: #fff; /* 깔끔하게 */
+    transition: box-shadow 0.2s ease;
+}
+
+/* 입력창 포커스 */
+#tab-info #info-expert-rod-row input:focus {
+    outline: none;
+    box-shadow: 0 0 4px rgba(74,144,226,0.3);
+}
+
+
+
 /* ===========정보토글==============*/
    
 
