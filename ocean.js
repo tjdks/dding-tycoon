@@ -93,7 +93,7 @@ function run1StarOptimization() {
     });
     if (!r) return alert("재료 부족");
 
-    const premiumLV = +document.getElementById("expert-premium-price").value;
+    const premiumLV = +document.getElementById("info-expert-premium-price").value;
     const PREMIUM_PRICE_RATE = { 1: 0.05, 2: 0.07, 3: 0.10, 4: 0.15, 5: 0.20, 6: 0.30 };
     const rate = PREMIUM_PRICE_RATE[premiumLV] || 0;
 
@@ -187,7 +187,7 @@ function run2StarOptimization() {
     });
     if (!r) return alert("재료 부족");
 
-    const premiumLV = +document.getElementById("expert-premium-price").value;
+    const premiumLV = +document.getElementById("info-expert-premium-price").value;
     const PREMIUM_PRICE_RATE = { 1: 0.05, 2: 0.07, 3: 0.10, 4: 0.15, 5: 0.20, 6: 0.30 };
     const rate = PREMIUM_PRICE_RATE[premiumLV] || 0;
 
@@ -289,7 +289,7 @@ function run3StarOptimization() {
     });
     if (!r) return alert("재료 부족");
 
-    const premiumLV = +document.getElementById("expert-premium-price").value;
+    const premiumLV = +document.getElementById("info-expert-premium-price").value;
     const PREMIUM_PRICE_RATE = { 1: 0.05, 2: 0.07, 3: 0.10, 4: 0.15, 5: 0.20, 6: 0.30 };
     const rate = PREMIUM_PRICE_RATE[premiumLV] || 0;
 
@@ -316,6 +316,7 @@ function run3StarOptimization() {
  * 이벤트 등록
  *************************************************/
 document.addEventListener("DOMContentLoaded", () => {
+    // 프리미엄 LV 변경 시 자동 계산
     const premiumInput = document.getElementById("info-expert-premium-price");
     if (premiumInput) {
         premiumInput.addEventListener("input", () => {
@@ -328,13 +329,10 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
-    // 탭별 실행 버튼
-    const btn1 = document.getElementById("btn-run-1");
-    if (btn1) btn1.addEventListener("click", run1StarOptimization);
-    const btn2 = document.getElementById("btn-run-2");
-    if (btn2) btn2.addEventListener("click", run2StarOptimization);
-    const btn3 = document.getElementById("btn-run-3");
-    if (btn3) btn3.addEventListener("click", run3StarOptimization);
+    // 계산기 버튼 이벤트 연결
+    document.getElementById("btn-run-1")?.addEventListener("click", run1StarOptimization);
+    document.getElementById("btn-run-2")?.addEventListener("click", run2StarOptimization);
+    document.getElementById("btn-run-3")?.addEventListener("click", run3StarOptimization);
 });
 
 // i 버튼 클릭 시 설명 토글

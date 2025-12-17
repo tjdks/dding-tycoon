@@ -74,7 +74,7 @@
                     <span class="info-btn" onclick="toggleDesc('desc-premium')">ⓘ</span>
                 </div>
                 <div class="input-area">
-                    <input id="expert-premium-price" type="number" placeholder="LV">
+                    <input id="info-expert-premium-price" type="number" placeholder="LV">
                 </div>
             </div>
 
@@ -191,7 +191,7 @@
             <label>미역 <input type="number" id="input-seaweed-1" value="0" min="0"></label>
             <label>성게 <input type="number" id="input-urchin-1" value="0" min="0"></label>
           </div>
-          <button onclick="run1StarOptimization()">1성 최대 골드 계산</button>
+          <button id="btn-run-1" onclick="run1StarOptimization()">1성 최대 골드 계산</button>
           <!-- 결과 카드 -->
           <div class="result-card" id="result-card-1">
 
@@ -258,7 +258,7 @@
             <label>성게 ★★ <input type="number" id="input-decay-2" value="0"></label>
           </div>
 
-          <button onclick="run2StarOptimization()">2성 최대 골드 계산</button>
+          <button id="btn-run-2" onclick="run2StarOptimization()">2성 최대 골드 계산</button>
 
           <!-- 결과 카드 -->
           <div class="result-card">
@@ -311,7 +311,7 @@
             <label>성게 ★★★ <input type="number" id="input-urchin-3" value="0"></label>
           </div>
 
-          <button onclick="run3StarOptimization()">3성 최대 골드 계산</button>
+          <button id="btn-run-3" onclick="run3StarOptimization()">3성 최대 골드 계산</button>
 
           <!-- 결과 -->
           <div class="result-card">
