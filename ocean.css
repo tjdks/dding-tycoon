@@ -9,6 +9,8 @@
     padding: 24px 20px;
 }
 
+
+
 /* =========================
    성급 토글
 ========================= */
@@ -127,6 +129,7 @@ button:hover {
     color: #d62828;
 }
 
+
 /* =========================
    제작 결과 카드
 ========================= */
@@ -153,25 +156,6 @@ button:hover {
     color: #1e6fd9;
 }
 
-/* =========================
-   상세 섹션
-========================= */
-.result-section {
-    margin-top: 14px;
-}
-
-.result-section h4 {
-    font-size: 0.9rem;
-    margin-bottom: 6px;
-    color: #1e6fd9;
-}
-
-.result-section p {
-    margin: 0;
-    font-size: 0.85rem;
-    color: #444;
-    line-height: 1.6;
-}
 
 /* ===============================
    정보탭 전문가 입력 UI
@@ -457,6 +441,7 @@ input[type=number] {
     font-weight: 700;
     color: #1e6fd9;
 }
+
 
 
 /* =========================
