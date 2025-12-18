@@ -178,6 +178,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // ===== 입력칸 세트 표시 =====
+    // ===== 입력칸 세트 표시 =====
     inputs.forEach(input => {
         const span = document.createElement('span');
         span.className = 'set-display';

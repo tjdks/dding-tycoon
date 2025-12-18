@@ -30,9 +30,7 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     const SET_COUNT = 64;
-
     const setSwitcher = document.getElementById('switcher-set');
-    const inputs = document.querySelectorAll('.input-grid input');
 
     // ===== 유틸 함수 =====
     function add(target, src, mul = 1) {
@@ -44,9 +42,7 @@ document.addEventListener('DOMContentLoaded', () => {
     function formatSet(num) {
         const sets = Math.floor(num / SET_COUNT);
         const remainder = num % SET_COUNT;
-        if (sets > 0 && remainder > 0) return `${sets} / ${remainder}`;
-        if (sets > 0) return `${sets} / 0`;
-        return `0 / ${remainder}`;
+        return `${sets} / ${remainder}`;
     }
 
     // ===== 계산 함수 =====
@@ -102,12 +98,12 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     // ===== 결과 업데이트 함수 =====
-    function update1StarResult(r) {
+    window.update1StarResult = function(r) {
         const premiumLV = +document.getElementById("info-expert-premium-price").value;
         const PREMIUM_PRICE_RATE = {1:0.05,2:0.07,3:0.10,4:0.15,5:0.20,6:0.30,7:0.40,8:0.50};
         const rate = PREMIUM_PRICE_RATE[premiumLV] || 0;
 
-        document.getElementById("result-gold-1").textContent = Math.floor(r.best.gold * (1 + rate)).toLocaleString();;
+        document.getElementById("result-gold-1").textContent = Math.floor(r.best.gold * (1 + rate)).toLocaleString();
         document.getElementById("result-premium-bonus-1").textContent = premiumLV ? `+${Math.floor(rate*100)}%` : '+0%';
 
         // 재료
@@ -148,7 +144,7 @@ document.addEventListener('DOMContentLoaded', () => {
             `농어 ${setSwitcher.checked ? formatSet(r.fishNeed.bass || 0) : r.fishNeed.bass || 0}`;
 
         window.last1StarResult = r;
-    }
+    };
 
     // ===== 버튼 클릭 함수 =====
     window.run1StarOptimization = function() {
@@ -169,22 +165,8 @@ document.addEventListener('DOMContentLoaded', () => {
         if (window.last1StarResult) update1StarResult(window.last1StarResult);
     });
 
-    // ===== 입력칸 세트 표시 =====
-    inputs.forEach(input => {
-        const span = document.createElement('span');
-        span.className = 'set-display';
-        input.parentNode.appendChild(span);
-
-        input.addEventListener('input', () => {
-            const value = parseInt(input.value) || 0;
-            if (setSwitcher.checked) {
-                const sets = Math.floor(value / SET_COUNT);
-                const remainder = value % SET_COUNT;
-                span.textContent = ` ${sets} / ${remainder}`;
-            } else {
-                span.textContent = '';
-            }
-        });
-    });
+    // ===== 입력칸 span 생성 삭제 =====
+    // 이전에 inputs.forEach(...)로 span 생성하던 부분은 제거
+    // util.js에서 span과 이벤트 모두 처리됨
 
 });
