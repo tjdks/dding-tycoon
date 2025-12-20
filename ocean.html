@@ -177,12 +177,28 @@
           <input type="radio" name="star-level" id="star3" value="3" onchange="switchStarLevel(this.value)">
           <label for="star3">3성</label>
 
-          <!-- 세트 입력 모드 스위치 (오른쪽 끝) -->
-          <span class="switcher switcher-set">
-            <input type="checkbox" id="switcher-set">
-            <label for="switcher-set"></label>
-          </span>
+          <!-- 스위치 컨테이너 -->
+          <div class="switch-container">
+            <!-- 세트 표시 스위치 -->
+            <div class="switch-wrapper">
+              <span class="switch-label">세트 표시</span>
+              <span class="switcher switcher-set">
+                <input type="checkbox" id="switcher-set">
+                <label for="switcher-set"></label>
+              </span>
+            </div>
+
+            <!-- 고급 입력 스위치 -->
+            <div class="switch-wrapper">
+              <span class="switch-label">기존 보유량 입력</span>
+              <span class="switcher switcher-advanced">
+                <input type="checkbox" id="switcher-advanced">
+                <label for="switcher-advanced"></label>
+              </span>
+            </div>
+          </div>
         </div>
+        
 
 
 
@@ -191,16 +207,42 @@
 
 
         <!-- 1성 계산기 -->
+        <!-- 1성 계산기 -->
         <div class="star-level" id="star-1">
           <h3>1성 계산기</h3>
 
-          <!-- 입력칸 -->
+          <!-- 기본 입력칸 (어패류) -->
           <div class="input-grid">
-            <label>굴 <input type="number" id="input-oyster-1" min="0"></label>
-            <label>소라 <input type="number" id="input-shell-1" min="0"></label>
-            <label>문어 <input type="number" id="input-octopus-1" min="0"></label>
-            <label>미역 <input type="number" id="input-seaweed-1" min="0"></label>
-            <label>성게 <input type="number" id="input-urchin-1" min="0"></label>
+            <label>굴 <input type="number" id="input-oyster-1" min="0" value="0"></label>
+            <label>소라 <input type="number" id="input-shell-1" min="0" value="0"></label>
+            <label>문어 <input type="number" id="input-octopus-1" min="0" value="0"></label>
+            <label>미역 <input type="number" id="input-seaweed-1" min="0" value="0"></label>
+            <label>성게 <input type="number" id="input-urchin-1" min="0" value="0"></label>
+          </div>
+
+          <!-- 고급 입력칸 (정수/핵) -->
+          <div class="advanced-inputs" id="advanced-inputs-1">
+            <div class="advanced-section">
+              <h4>보유 정수</h4>
+              <div class="input-grid">
+                <label>수호 정수 <input type="number" id="input-essence-guard-1" min="0" value="0"></label>
+                <label>파동 정수 <input type="number" id="input-essence-wave-1" min="0" value="0"></label>
+                <label>혼란 정수 <input type="number" id="input-essence-chaos-1" min="0" value="0"></label>
+                <label>생명 정수 <input type="number" id="input-essence-life-1" min="0" value="0"></label>
+                <label>부식 정수 <input type="number" id="input-essence-decay-1" min="0" value="0"></label>
+              </div>
+            </div>
+
+            <div class="advanced-section">
+              <h4>보유 핵</h4>
+              <div class="input-grid">
+                <label>물결 수호 <input type="number" id="input-core-wg-1" min="0" value="0"></label>
+                <label>파동 오염 <input type="number" id="input-core-wp-1" min="0" value="0"></label>
+                <label>질서 파괴 <input type="number" id="input-core-od-1" min="0" value="0"></label>
+                <label>활력 붕괴 <input type="number" id="input-core-vd-1" min="0" value="0"></label>
+                <label>침식 방어 <input type="number" id="input-core-ed-1" min="0" value="0"></label>
+              </div>
+            </div>
           </div>
 
           <!-- 계산 버튼 -->
