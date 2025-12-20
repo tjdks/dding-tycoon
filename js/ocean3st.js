@@ -39,12 +39,12 @@ document.addEventListener('DOMContentLoaded', () => {
         for (let AQUA = 0; AQUA <= limit; AQUA++) {
             for (let NAUTILUS = 0; NAUTILUS <= limit; NAUTILUS++) {
                 for (let SPINE = 0; SPINE <= limit; SPINE++) {
-                    // 영약 계산 (2성의 결정과 동일한 구조)
+                    // 영약 계산
                     let potion = {
                         immortal: AQUA + NAUTILUS,      // 불멸 재생 = 아쿠아 + 나우틸러스
                         barrier: AQUA + NAUTILUS,       // 파동 장벽 = 아쿠아 + 나우틸러스
-                        corrupt: SPINE + NAUTILUS,      // 타락 침식 = 척추 + 나우틸러스
-                        frenzy: SPINE + NAUTILUS,       // 생명 광란 = 척추 + 나우틸러스
+                        corrupt: SPINE,                 // 타락 침식 = 척추만
+                        frenzy: NAUTILUS + SPINE,       // 생명 광란 = 나우틸러스 + 척추
                         venom: AQUA + SPINE             // 맹독 파동 = 아쿠아 + 척추
                     };
                     
@@ -72,8 +72,8 @@ document.addEventListener('DOMContentLoaded', () => {
         let potionNeed = {
             immortal: best.AQUA + best.NAUTILUS,
             barrier: best.AQUA + best.NAUTILUS,
-            corrupt: best.SPINE + best.NAUTILUS,
-            frenzy: best.SPINE + best.NAUTILUS,
+            corrupt: best.SPINE,
+            frenzy: best.NAUTILUS + best.SPINE,
             venom: best.AQUA + best.SPINE
         };
 
