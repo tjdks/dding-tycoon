@@ -1,5 +1,5 @@
 /*************************************************
- * 1️⃣ 1성 계산기 (ocean1st.js) - 고급 입력 모드 추가
+ * 1️⃣ 1성 계산기 (ocean1st.js) - 고급 입력 모드 수정
  *************************************************/
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -80,7 +80,7 @@ document.addEventListener('DOMContentLoaded', () => {
             essFromCore.guard += input.coreED * 1;
         }
 
-        // 총 보유 정수
+        // 총 보유 정수 (어패류 + 직접 보유 정수 + 핵에서 환산된 정수)
         const totalEss = {
             guard: input.guard + (input.essGuard || 0) + essFromCore.guard,
             wave: input.wave + (input.essWave || 0) + essFromCore.wave,
@@ -149,6 +149,7 @@ document.addEventListener('DOMContentLoaded', () => {
         let finalEssNeed = { guard: 0, wave: 0, chaos: 0, life: 0, decay: 0 };
 
         if (isAdvanced) {
+            // 제작할 핵 = 필요 핵 - 보유 핵
             coreToMake = {
                 WG: Math.max(0, coreNeed.WG - input.coreWG),
                 WP: Math.max(0, coreNeed.WP - input.coreWP),
@@ -157,16 +158,18 @@ document.addEventListener('DOMContentLoaded', () => {
                 ED: Math.max(0, coreNeed.ED - input.coreED)
             };
 
+            // 제작할 핵에 필요한 정수
             for (let c in coreToMake) {
                 add(essToMake, CORE_TO_ESSENCE[c], coreToMake[c]);
             }
 
+            // 제작할 정수 = 필요 정수 - 직접 보유 정수 (핵에서 환산된 정수는 이미 사용됨)
             finalEssNeed = {
-                guard: Math.max(0, (essToMake.guard || 0) - (input.essGuard + essFromCore.guard)),
-                wave: Math.max(0, (essToMake.wave || 0) - (input.essWave + essFromCore.wave)),
-                chaos: Math.max(0, (essToMake.chaos || 0) - (input.essChaos + essFromCore.chaos)),
-                life: Math.max(0, (essToMake.life || 0) - (input.essLife + essFromCore.life)),
-                decay: Math.max(0, (essToMake.decay || 0) - (input.essDecay + essFromCore.decay))
+                guard: Math.max(0, essToMake.guard - input.essGuard),
+                wave: Math.max(0, essToMake.wave - input.essWave),
+                chaos: Math.max(0, essToMake.chaos - input.essChaos),
+                life: Math.max(0, essToMake.life - input.essLife),
+                decay: Math.max(0, essToMake.decay - input.essDecay)
             };
         }
 
@@ -214,7 +217,7 @@ document.addEventListener('DOMContentLoaded', () => {
             `침식 방어 ${setSwitcher.checked ? formatSet(coreData.ED || 0) : (coreData.ED || 0)}`;
 
         // 블록: 제작할 정수에 필요한 블록만
-        const blockNeedCalc = isAdvanced ? essData : r.essNeed;
+        const blockNeedCalc = isAdvanced ? r.finalEssNeed : r.essNeed;
         const finalBlockNeed = {
             clay: (blockNeedCalc.guard || 0) * 1,
             sand: (blockNeedCalc.wave || 0) * 3,
