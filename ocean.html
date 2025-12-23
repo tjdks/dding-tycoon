@@ -6,6 +6,7 @@
   <title>🍎계산기 - 해양</title>
   <link rel="stylesheet" href="css/style.css" />
   <link rel="stylesheet" href="css/ocean.css" />
+  <link rel="stylesheet" href="css/ocean-icons.css" /> 
 </head>
 
 <body>
@@ -35,8 +36,6 @@
 
       <!-- 정보 탭 -->
       <div id="tab-info" class="tab-content">
-
-        
         <!-- 전문가 입력 정보 (정보탭용) -->
         <div id="info-expert" class="fish-section-box">
             <h3 style="margin-bottom: 12px;">🎣 현재 전문가 세팅</h3>
@@ -48,7 +47,7 @@
             </div>
 
             <div class="fish-row">
-                    <div class="fish-label"><span style="color:#915ce0; font-weight:bold;">조개 좀 사조개</span>
+                <div class="fish-label"><span style="color:#915ce0; font-weight:bold;">조개 좀 사조개</span>
                     <span class="info-btn" onclick="toggleDesc('desc-clam')">ⓘ</span>
                 </div>
                 <div class="input-area">
@@ -154,7 +153,7 @@
                     <li><b>LV 7</b> – 아일랜드 수중 어획 시 조개 등장 확률 +4%</li>
                     <li><b>LV 8</b> – 아일랜드 수중 어획 시 조개 등장 확률 +4.5%</li>
                     <li><b>LV 9</b> – 아일랜드 수중 어획 시 조개 등장 확률 +5%</li>
-                    <li><b>LV10</b> – 아일랜드 수중 어획 시 조개 등장 확률 +7%</li>
+                    <li><b>LV 10</b> – 아일랜드 수중 어획 시 조개 등장 확률 +7%</li>
                 </ul>
             </div>
         </div>
@@ -162,8 +161,6 @@
 
       <!-- 골드 수익 최적화 탭 -->
       <div id="tab-gold" class="tab-content" style="display:none;">
-
-        
 
         <!-- 성급 선택 -->
         <div class="star-toggle">
@@ -197,15 +194,7 @@
             </div>
           </div>
         </div>
-        
 
-
-
-<!------------------계산기---------------------->
-
-
-
-        <!-- 1성 계산기 -->
         <!-- 1성 계산기 -->
         <div class="star-level" id="star-1">
           <h3>1성 계산기</h3>
@@ -247,7 +236,7 @@
           <!-- 계산 버튼 -->
           <button onclick="run1StarOptimization()">1성 최대 골드 계산</button>
 
-          <!-- 결과 카드 포함 -->
+          <!-- 결과 카드 -->
           <div class="result-card" id="result-card-1">
             <div class="result-header">
               <h3>📊 최적 조합 결과</h3>
@@ -265,26 +254,25 @@
 
             <div class="result-section">
               <h4>🔹 필요 정수 제작</h4>
-              <p id="result-essence-1"></p>
+              <div id="result-essence-1"></div>
             </div>
 
             <div class="result-section">
               <h4>🔹 필요 핵 제작</h4>
-              <p id="result-core-1"></p>
+              <div id="result-core-1"></div>
             </div>
 
             <div class="result-section">
               <h4>🔹 필요 재료</h4>
-              <p id="result-block-1"></p>
+              <div id="result-block-1"></div>
             </div>
 
             <div class="result-section">
               <h4>🔹 필요 물고기</h4>
-              <p id="result-fish-1"></p>
+              <div id="result-fish-1"></div>
             </div>
           </div>
         </div>
-
         
         <!-- ================= 2성 계산기 ================= -->
         <div class="star-level" id="star-2" style="display:none;">
@@ -343,32 +331,31 @@
 
             <div class="result-section">
               <h4>🔹 필요 에센스 제작</h4>
-              <p id="result-essence-2"></p>
+              <div id="result-essence-2"></div>
             </div>
 
             <div class="result-section">
               <h4>🔹 필요 결정 제작</h4>
-              <p id="result-core-2"></p>
+              <div id="result-core-2"></div>
             </div>
 
             <div class="result-section">
               <h4>🔹 필요 재료</h4>
-              <p id="result-material-2"></p>
+              <div id="result-material-2"></div>
             </div>
 
             <div class="result-section">
               <h4>🔹 추가 산호</h4>
-              <p id="result-coral-2"></p>
+              <div id="result-coral-2"></div>
             </div>
 
             <div class="result-section">
               <h4>🔹 추가 광물</h4>
-              <p id="result-extra-2"></p>
+              <div id="result-extra-2"></div>
             </div>
           </div>
         </div>
-
-        <!-- ================= 3성 계산기 ================= -->
+            
         <!-- ================= 3성 계산기 ================= -->
         <div class="star-level" id="star-3" style="display:none;">
           <h3>3성 계산기</h3>
@@ -495,17 +482,14 @@
           <div class="stamina-result-card">
               <div id="stamina-item-list">아직 계산되지 않았습니다.</div>
           </div>
-
-
-      
+        </div>
+      </div>
 
     </section>
   </main>
 
   <footer class="footer">© 몽실몽실</footer>
 
-  
-  
   <script src="js/utill.js"></script>
   <script src="js/expert.js"></script>
   <script src="js/ocean1st.js"></script>
@@ -514,7 +498,6 @@
   <script src="js/oceanstamina.js"></script>
   <script src="js/oceaninit.js"></script>
   <script src="js/script.js"></script>
-
 
 </body>
 </html>

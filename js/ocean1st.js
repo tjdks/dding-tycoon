@@ -1,5 +1,5 @@
 /*************************************************
- * 1️⃣ 1성 계산기 (ocean1st.js) - 성능 최적화 버전
+ * 1️⃣ 1성 계산기 (ocean1st.js) - 카드형 출력 버전
  *************************************************/
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -250,7 +250,7 @@ document.addEventListener('DOMContentLoaded', () => {
         };
     };
 
-    // ===== 결과 업데이트 함수 =====
+    // ===== 결과 업데이트 함수 (카드형 출력) =====
     window.update1StarResult = function(r) {
         const premiumLV = +document.getElementById("info-expert-premium-price").value || 0;
         const PREMIUM_PRICE_RATE = {1:0.05,2:0.07,3:0.10,4:0.15,5:0.20,6:0.30,7:0.40,8:0.50};
@@ -269,33 +269,113 @@ document.addEventListener('DOMContentLoaded', () => {
         const blockData = isAdvanced ? r.blockNeed : r.blockNeedTotal;
         const fishData = isAdvanced ? r.fishNeed : r.fishNeedTotal;
 
-        document.getElementById("result-essence-1").textContent =
-            `수호 ${setSwitcher.checked ? formatSet(essData.guard || 0) : (essData.guard || 0)}, ` +
-            `파동 ${setSwitcher.checked ? formatSet(essData.wave || 0) : (essData.wave || 0)}, ` +
-            `혼란 ${setSwitcher.checked ? formatSet(essData.chaos || 0) : (essData.chaos || 0)}, ` +
-            `생명 ${setSwitcher.checked ? formatSet(essData.life || 0) : (essData.life || 0)}, ` +
-            `부식 ${setSwitcher.checked ? formatSet(essData.decay || 0) : (essData.decay || 0)}`;
+        // 정수 - 카드형 그리드
+        const essenceHTML = `
+            <div class="result-materials-grid">
+                <div class="material-card">
+                    <div class="icon"><img src="img/essence_guard.png" alt="수호"></div>
+                    <div class="name">수호 정수</div>
+                    <div class="value">${setSwitcher.checked ? formatSet(essData.guard || 0) : (essData.guard || 0)}</div>
+                </div>
+                <div class="material-card">
+                    <div class="icon"><img src="img/essence_wave.png" alt="파동"></div>
+                    <div class="name">파동 정수</div>
+                    <div class="value">${setSwitcher.checked ? formatSet(essData.wave || 0) : (essData.wave || 0)}</div>
+                </div>
+                <div class="material-card">
+                    <div class="icon"><img src="img/essence_chaos.png" alt="혼란"></div>
+                    <div class="name">혼란 정수</div>
+                    <div class="value">${setSwitcher.checked ? formatSet(essData.chaos || 0) : (essData.chaos || 0)}</div>
+                </div>
+                <div class="material-card">
+                    <div class="icon"><img src="img/essence_life.png" alt="생명"></div>
+                    <div class="name">생명 정수</div>
+                    <div class="value">${setSwitcher.checked ? formatSet(essData.life || 0) : (essData.life || 0)}</div>
+                </div>
+                <div class="material-card">
+                    <div class="icon"><img src="img/essence_decay.png" alt="부식"></div>
+                    <div class="name">부식 정수</div>
+                    <div class="value">${setSwitcher.checked ? formatSet(essData.decay || 0) : (essData.decay || 0)}</div>
+                </div>
+            </div>
+        `;
+        document.getElementById("result-essence-1").innerHTML = essenceHTML;
 
-        document.getElementById("result-core-1").textContent =
-            `물결 수호 ${setSwitcher.checked ? formatSet(coreData.WG || 0) : (coreData.WG || 0)}, ` +
-            `파동 오염 ${setSwitcher.checked ? formatSet(coreData.WP || 0) : (coreData.WP || 0)}, ` +
-            `질서 파괴 ${setSwitcher.checked ? formatSet(coreData.OD || 0) : (coreData.OD || 0)}, ` +
-            `활력 붕괴 ${setSwitcher.checked ? formatSet(coreData.VD || 0) : (coreData.VD || 0)}, ` +
-            `침식 방어 ${setSwitcher.checked ? formatSet(coreData.ED || 0) : (coreData.ED || 0)}`;
+        // 핵 - 카드형 그리드
+        const coreHTML = `
+            <div class="result-materials-grid">
+                <div class="material-card">
+                    <div class="icon"><img src="img/core_wg.png" alt="물결수호"></div>
+                    <div class="name">물결 수호</div>
+                    <div class="value">${setSwitcher.checked ? formatSet(coreData.WG || 0) : (coreData.WG || 0)}</div>
+                </div>
+                <div class="material-card">
+                    <div class="icon"><img src="img/core_wp.png" alt="파동오염"></div>
+                    <div class="name">파동 오염</div>
+                    <div class="value">${setSwitcher.checked ? formatSet(coreData.WP || 0) : (coreData.WP || 0)}</div>
+                </div>
+                <div class="material-card">
+                    <div class="icon"><img src="img/core_od.png" alt="질서파괴"></div>
+                    <div class="name">질서 파괴</div>
+                    <div class="value">${setSwitcher.checked ? formatSet(coreData.OD || 0) : (coreData.OD || 0)}</div>
+                </div>
+                <div class="material-card">
+                    <div class="icon"><img src="img/core_vd.png" alt="활력붕괴"></div>
+                    <div class="name">활력 붕괴</div>
+                    <div class="value">${setSwitcher.checked ? formatSet(coreData.VD || 0) : (coreData.VD || 0)}</div>
+                </div>
+                <div class="material-card">
+                    <div class="icon"><img src="img/core_ed.png" alt="침식방어"></div>
+                    <div class="name">침식 방어</div>
+                    <div class="value">${setSwitcher.checked ? formatSet(coreData.ED || 0) : (coreData.ED || 0)}</div>
+                </div>
+            </div>
+        `;
+        document.getElementById("result-core-1").innerHTML = coreHTML;
 
-        document.getElementById("result-block-1").textContent =
-            `점토 ${setSwitcher.checked ? formatSet(blockData.clay) : blockData.clay}, ` +
-            `모래 ${setSwitcher.checked ? formatSet(blockData.sand) : blockData.sand}, ` +
-            `흙 ${setSwitcher.checked ? formatSet(blockData.dirt) : blockData.dirt}, ` +
-            `자갈 ${setSwitcher.checked ? formatSet(blockData.gravel) : blockData.gravel}, ` +
-            `화강암 ${setSwitcher.checked ? formatSet(blockData.granite) : blockData.granite}`;
+        // 블록 - 텍스트만 표시 (왼쪽 정렬)
+        const blockHTML = `
+            <div style="display: flex; flex-wrap: wrap; gap: 12px;">
+                <span style="padding: 8px 12px; background: #f8f9fb; border-radius: 8px; font-size: 0.9rem;">
+                    <strong>점토</strong> ${setSwitcher.checked ? formatSet(blockData.clay) : blockData.clay}
+                </span>
+                <span style="padding: 8px 12px; background: #f8f9fb; border-radius: 8px; font-size: 0.9rem;">
+                    <strong>모래</strong> ${setSwitcher.checked ? formatSet(blockData.sand) : blockData.sand}
+                </span>
+                <span style="padding: 8px 12px; background: #f8f9fb; border-radius: 8px; font-size: 0.9rem;">
+                    <strong>흙</strong> ${setSwitcher.checked ? formatSet(blockData.dirt) : blockData.dirt}
+                </span>
+                <span style="padding: 8px 12px; background: #f8f9fb; border-radius: 8px; font-size: 0.9rem;">
+                    <strong>자갈</strong> ${setSwitcher.checked ? formatSet(blockData.gravel) : blockData.gravel}
+                </span>
+                <span style="padding: 8px 12px; background: #f8f9fb; border-radius: 8px; font-size: 0.9rem;">
+                    <strong>화강암</strong> ${setSwitcher.checked ? formatSet(blockData.granite) : blockData.granite}
+                </span>
+            </div>
+        `;
+        document.getElementById("result-block-1").innerHTML = blockHTML;
 
-        document.getElementById("result-fish-1").textContent =
-            `새우 ${setSwitcher.checked ? formatSet(fishData.shrimp) : fishData.shrimp}, ` +
-            `도미 ${setSwitcher.checked ? formatSet(fishData.domi) : fishData.domi}, ` +
-            `청어 ${setSwitcher.checked ? formatSet(fishData.herring) : fishData.herring}, ` +
-            `금붕어 ${setSwitcher.checked ? formatSet(fishData.goldfish) : fishData.goldfish}, ` +
-            `농어 ${setSwitcher.checked ? formatSet(fishData.bass) : fishData.bass}`;
+        // 물고기 - 텍스트만 표시 (왼쪽 정렬)
+        const fishHTML = `
+            <div style="display: flex; flex-wrap: wrap; gap: 12px;">
+                <span style="padding: 8px 12px; background: #f8f9fb; border-radius: 8px; font-size: 0.9rem;">
+                    <strong>새우</strong> ${setSwitcher.checked ? formatSet(fishData.shrimp) : fishData.shrimp}
+                </span>
+                <span style="padding: 8px 12px; background: #f8f9fb; border-radius: 8px; font-size: 0.9rem;">
+                    <strong>도미</strong> ${setSwitcher.checked ? formatSet(fishData.domi) : fishData.domi}
+                </span>
+                <span style="padding: 8px 12px; background: #f8f9fb; border-radius: 8px; font-size: 0.9rem;">
+                    <strong>청어</strong> ${setSwitcher.checked ? formatSet(fishData.herring) : fishData.herring}
+                </span>
+                <span style="padding: 8px 12px; background: #f8f9fb; border-radius: 8px; font-size: 0.9rem;">
+                    <strong>금붕어</strong> ${setSwitcher.checked ? formatSet(fishData.goldfish) : fishData.goldfish}
+                </span>
+                <span style="padding: 8px 12px; background: #f8f9fb; border-radius: 8px; font-size: 0.9rem;">
+                    <strong>농어</strong> ${setSwitcher.checked ? formatSet(fishData.bass) : fishData.bass}
+                </span>
+            </div>
+        `;
+        document.getElementById("result-fish-1").innerHTML = fishHTML;
 
         window.last1StarResult = r;
     };

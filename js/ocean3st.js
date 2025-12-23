@@ -298,26 +298,34 @@ document.addEventListener('DOMContentLoaded', () => {
         const netherData = isAdvancedMode ? r.netherNeed : r.netherNeedTotal;
         const flowerData = isAdvancedMode ? r.flowerNeed : r.flowerNeedTotal;
 
-        document.getElementById("result-essence-3").textContent =
-            `수호 ${format(elixData.guard || 0)}, ` +
-            `파동 ${format(elixData.wave || 0)}, ` +
-            `혼란 ${format(elixData.chaos || 0)}, ` +
-            `생명 ${format(elixData.life || 0)}, ` +
-            `부식 ${format(elixData.decay || 0)}`;
+        // 엘릭서 - 이미지와 함께 표시 (1성, 2성과 동일한 스타일)
+        const elixHTML = `
+            <span class="essence-item"><img src="img/elixir-guard.png" alt="수호">수호 ${format(elixData.guard || 0)}</span>
+            <span class="essence-item"><img src="img/elixir-wave.png" alt="파동">파동 ${format(elixData.wave || 0)}</span>
+            <span class="essence-item"><img src="img/elixir-chaos.png" alt="혼란">혼란 ${format(elixData.chaos || 0)}</span>
+            <span class="essence-item"><img src="img/elixir-life.png" alt="생명">생명 ${format(elixData.life || 0)}</span>
+            <span class="essence-item"><img src="img/elixir-decay.png" alt="부식">부식 ${format(elixData.decay || 0)}</span>
+        `;
+        document.getElementById("result-essence-3").innerHTML = elixHTML;
 
-        document.getElementById("result-core-3").textContent =
-            `불멸 재생 ${format(potionData.immortal || 0)}, ` +
-            `파동 장벽 ${format(potionData.barrier || 0)}, ` +
-            `타락 침식 ${format(potionData.corrupt || 0)}, ` +
-            `생명 광란 ${format(potionData.frenzy || 0)}, ` +
-            `맹독 파동 ${format(potionData.venom || 0)}`;
+        // 영약 - 이미지와 함께 표시
+        const potionHTML = `
+            <span class="core-item"><img src="img/potion-immortal.png" alt="불멸재생">불멸 재생 ${format(potionData.immortal || 0)}</span>
+            <span class="core-item"><img src="img/potion-barrier.png" alt="파동장벽">파동 장벽 ${format(potionData.barrier || 0)}</span>
+            <span class="core-item"><img src="img/potion-corrupt.png" alt="타락침식">타락 침식 ${format(potionData.corrupt || 0)}</span>
+            <span class="core-item"><img src="img/potion-frenzy.png" alt="생명광란">생명 광란 ${format(potionData.frenzy || 0)}</span>
+            <span class="core-item"><img src="img/potion-venom.png" alt="맹독파동">맹독 파동 ${format(potionData.venom || 0)}</span>
+        `;
+        document.getElementById("result-core-3").innerHTML = potionHTML;
 
+        // 필요 재료
         document.getElementById("result-material-3").textContent =
             `불우렁쉥이 ${format(materialData.seaSquirt)}, ` +
             `유리병 ${format(materialData.glassBottle)}, ` +
             `발광 먹물 ${format(materialData.glowInkSac)}, ` +
             `발광 열매 ${format(materialData.glowBerry)}`;
 
+        // 필요 블록
         document.getElementById("result-block-3").textContent =
             `네더렉 ${format(netherData.netherrack)}, ` +
             `마그마 ${format(netherData.magmaBlock)}, ` +
@@ -325,6 +333,7 @@ document.addEventListener('DOMContentLoaded', () => {
             `진홍빛자루 ${format(netherData.crimsonStem)}, ` +
             `뒤틀린자루 ${format(netherData.warpedStem)}`;
 
+        // 필요 꽃
         document.getElementById("result-flower-3").textContent =
             `수레국화 ${format(flowerData.cornflower)}, ` +
             `민들레 ${format(flowerData.dandelion)}, ` +

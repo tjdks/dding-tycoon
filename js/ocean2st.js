@@ -1,5 +1,5 @@
 /*************************************************
- * 2️⃣ 2성 계산기 (ocean2st.js) - 성능 최적화 버전
+ * 2️⃣ 2성 계산기 (ocean2st.js) - 카드형 출력 버전
  *************************************************/
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -7,36 +7,6 @@ document.addEventListener('DOMContentLoaded', () => {
     // ===== 상수 정의 =====
     const GOLD_2STAR = { CORE: 7413, POTION: 7487, WING: 7592 };
     
-    const CRYSTAL_TO_ESSENCE = {
-        vital:   { guard: 1, life: 1 },
-        erosion: { wave: 1, decay: 1 },
-        defense: { guard: 1, chaos: 1 },
-        regen:   { wave: 1, life: 1 },
-        poison:  { chaos: 1, decay: 1 }
-    };
-    
-    const ESSENCE_TO_MATERIAL = {
-        guard: { seaweed: 2, coral_guard: 1 },
-        wave: { seaweed: 2, coral_wave: 1 },
-        chaos: { seaweed: 2, coral_chaos: 1 },
-        life: { seaweed: 2, coral_life: 1 },
-        decay: { seaweed: 2, coral_decay: 1 }
-    };
-    
-    const CRYSTAL_TO_MATERIAL = {
-        vital: { ink: 1, mineral_lapis: 1 },
-        erosion: { ink: 1, mineral_redstone: 1 },
-        defense: { ink: 1, mineral_iron: 1 },
-        regen: { ink: 1, mineral_gold: 1 },
-        poison: { ink: 1, mineral_diamond: 1 }
-    };
-
-    const ITEM_TO_CRYSTAL = {
-        CORE: { vital: 1, erosion: 1, regen: 1 },
-        POTION: { erosion: 1, regen: 1, poison: 1 },
-        WING: { vital: 1, defense: 1, poison: 1 }
-    };
-
     const SET_COUNT = 64;
     const setSwitcher = document.getElementById('switcher-set');
     const advancedSwitcher = document.getElementById('switcher-advanced');
@@ -93,21 +63,17 @@ document.addEventListener('DOMContentLoaded', () => {
             poison: input.crystalPoison || 0
         } : { vital: 0, erosion: 0, defense: 0, regen: 0, poison: 0 };
 
-        // 2️⃣ 최대 제작 가능 개수 계산 (성능 최적화)
-        
-        // CORE: vital(guard+life) + erosion(wave+decay) + regen(wave+life)
+        // 2️⃣ 최대 제작 가능 개수 계산
         const maxCore_vital = totalCrystal.vital + Math.floor((totalFish.guard + totalEss.guard + totalFish.life + totalEss.life) / 2);
         const maxCore_erosion = totalCrystal.erosion + Math.floor((totalFish.wave + totalEss.wave + totalFish.decay + totalEss.decay) / 2);
         const maxCore_regen = totalCrystal.regen + Math.floor((totalFish.wave + totalEss.wave + totalFish.life + totalEss.life) / 2);
         const maxCore = Math.min(maxCore_vital, maxCore_erosion, maxCore_regen);
 
-        // POTION: erosion(wave+decay) + regen(wave+life) + poison(chaos+decay)
         const maxPotion_erosion = totalCrystal.erosion + Math.floor((totalFish.wave + totalEss.wave + totalFish.decay + totalEss.decay) / 2);
         const maxPotion_regen = totalCrystal.regen + Math.floor((totalFish.wave + totalEss.wave + totalFish.life + totalEss.life) / 2);
         const maxPotion_poison = totalCrystal.poison + Math.floor((totalFish.chaos + totalEss.chaos + totalFish.decay + totalEss.decay) / 2);
         const maxPotion = Math.min(maxPotion_erosion, maxPotion_regen, maxPotion_poison);
 
-        // WING: vital(guard+life) + defense(guard+chaos) + poison(chaos+decay)
         const maxWing_vital = totalCrystal.vital + Math.floor((totalFish.guard + totalEss.guard + totalFish.life + totalEss.life) / 2);
         const maxWing_defense = totalCrystal.defense + Math.floor((totalFish.guard + totalEss.guard + totalFish.chaos + totalEss.chaos) / 2);
         const maxWing_poison = totalCrystal.poison + Math.floor((totalFish.chaos + totalEss.chaos + totalFish.decay + totalEss.decay) / 2);
@@ -115,12 +81,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
         let best = { gold: -1, CORE: 0, POTION: 0, WING: 0 };
 
-        // 3️⃣ 최적화된 루프 (실제 가능 범위만 탐색)
+        // 3️⃣ 최적화된 루프
         for (let CORE = 0; CORE <= maxCore; CORE++) {
             for (let POTION = 0; POTION <= maxPotion; POTION++) {
                 for (let WING = 0; WING <= maxWing; WING++) {
-                    
-                    // 필요한 결정
                     const needCrystal = {
                         vital: CORE * 1 + WING * 1,
                         erosion: CORE * 1 + POTION * 1,
@@ -129,7 +93,6 @@ document.addEventListener('DOMContentLoaded', () => {
                         poison: POTION * 1 + WING * 1
                     };
 
-                    // 제작할 결정
                     const makeCrystal = {
                         vital: Math.max(0, needCrystal.vital - totalCrystal.vital),
                         erosion: Math.max(0, needCrystal.erosion - totalCrystal.erosion),
@@ -138,7 +101,6 @@ document.addEventListener('DOMContentLoaded', () => {
                         poison: Math.max(0, needCrystal.poison - totalCrystal.poison)
                     };
 
-                    // 제작할 결정에 필요한 에센스
                     const needEss = {
                         guard: makeCrystal.vital + makeCrystal.defense,
                         wave: makeCrystal.erosion + makeCrystal.regen,
@@ -147,7 +109,6 @@ document.addEventListener('DOMContentLoaded', () => {
                         decay: makeCrystal.erosion + makeCrystal.poison
                     };
 
-                    // 제작할 에센스 (보유 에센스 차감)
                     const makeFish = {
                         guard: Math.max(0, needEss.guard - totalEss.guard),
                         wave: Math.max(0, needEss.wave - totalEss.wave),
@@ -156,7 +117,6 @@ document.addEventListener('DOMContentLoaded', () => {
                         decay: Math.max(0, needEss.decay - totalEss.decay)
                     };
 
-                    // 2성 어패류 부족 체크
                     if (
                         makeFish.guard > totalFish.guard ||
                         makeFish.wave > totalFish.wave ||
@@ -223,7 +183,6 @@ document.addEventListener('DOMContentLoaded', () => {
             mineral_diamond: crystalToMake.poison
         };
 
-        // 일반 모드 표시용 (전체 필요량)
         const essNeedTotal = {
             guard: crystalNeed.vital + crystalNeed.defense,
             wave: crystalNeed.erosion + crystalNeed.regen,
@@ -259,7 +218,7 @@ document.addEventListener('DOMContentLoaded', () => {
         };
     };
 
-    // ===== 결과 업데이트 함수 =====
+    // ===== 결과 업데이트 함수 (카드형 출력) =====
     window.update2StarResult = function(r) {
         const getElem = (id) => document.getElementById(id);
         const updateText = (id, text) => {
@@ -287,42 +246,126 @@ document.addEventListener('DOMContentLoaded', () => {
         const crystalData = isAdvancedMode ? r.crystalToMake : r.crystalNeed;
         const materialData = isAdvancedMode ? r.materialNeed : r.materialNeedTotal;
 
-        updateText("result-essence-2",
-            `수호 ${format(essData.guard || 0)}, ` +
-            `파동 ${format(essData.wave || 0)}, ` +
-            `혼란 ${format(essData.chaos || 0)}, ` +
-            `생명 ${format(essData.life || 0)}, ` +
-            `부식 ${format(essData.decay || 0)}`
-        );
+        // 에센스 - 카드형 그리드
+        const essenceHTML = `
+            <div class="result-materials-grid">
+                <div class="material-card">
+                    <div class="icon"><img src="img/essence_guard_2.png" alt="수호"></div>
+                    <div class="name">수호 에센스</div>
+                    <div class="value">${format(essData.guard || 0)}</div>
+                </div>
+                <div class="material-card">
+                    <div class="icon"><img src="img/essence_wave_2.png" alt="파동"></div>
+                    <div class="name">파동 에센스</div>
+                    <div class="value">${format(essData.wave || 0)}</div>
+                </div>
+                <div class="material-card">
+                    <div class="icon"><img src="img/essence_chaos_2.png" alt="혼란"></div>
+                    <div class="name">혼란 에센스</div>
+                    <div class="value">${format(essData.chaos || 0)}</div>
+                </div>
+                <div class="material-card">
+                    <div class="icon"><img src="img/essence_life_2.png" alt="생명"></div>
+                    <div class="name">생명 에센스</div>
+                    <div class="value">${format(essData.life || 0)}</div>
+                </div>
+                <div class="material-card">
+                    <div class="icon"><img src="img/essence_decay_2.png" alt="부식"></div>
+                    <div class="name">부식 에센스</div>
+                    <div class="value">${format(essData.decay || 0)}</div>
+                </div>
+            </div>
+        `;
+        document.getElementById("result-essence-2").innerHTML = essenceHTML;
 
-        updateText("result-core-2",
-            `활기 보존 ${format(crystalData.vital || 0)}, ` +
-            `파도 침식 ${format(crystalData.erosion || 0)}, ` +
-            `방어 오염 ${format(crystalData.defense || 0)}, ` +
-            `격류 재생 ${format(crystalData.regen || 0)}, ` +
-            `맹독 혼란 ${format(crystalData.poison || 0)}`
-        );
+        // 결정 - 카드형 그리드
+        const crystalHTML = `
+            <div class="result-materials-grid">
+                <div class="material-card">
+                    <div class="icon"><img src="img/crystal_vital.png" alt="활기보존"></div>
+                    <div class="name">활기 보존</div>
+                    <div class="value">${format(crystalData.vital || 0)}</div>
+                </div>
+                <div class="material-card">
+                    <div class="icon"><img src="img/crystal_erosion.png" alt="파도침식"></div>
+                    <div class="name">파도 침식</div>
+                    <div class="value">${format(crystalData.erosion || 0)}</div>
+                </div>
+                <div class="material-card">
+                    <div class="icon"><img src="img/crystal_defense.png" alt="방어오염"></div>
+                    <div class="name">방어 오염</div>
+                    <div class="value">${format(crystalData.defense || 0)}</div>
+                </div>
+                <div class="material-card">
+                    <div class="icon"><img src="img/crystal_regen.png" alt="격류재생"></div>
+                    <div class="name">격류 재생</div>
+                    <div class="value">${format(crystalData.regen || 0)}</div>
+                </div>
+                <div class="material-card">
+                    <div class="icon"><img src="img/crystal_poison.png" alt="맹독혼란"></div>
+                    <div class="name">맹독 혼란</div>
+                    <div class="value">${format(crystalData.poison || 0)}</div>
+                </div>
+            </div>
+        `;
+        document.getElementById("result-core-2").innerHTML = crystalHTML;
 
-        updateText("result-material-2",
-            `해초 ${format(materialData.seaweed || 0)}, ` +
-            `먹물 ${format(materialData.ink || 0)}`
-        );
+        // 재료 - 텍스트 표시
+        const materialHTML = `
+            <div style="display: flex; flex-wrap: wrap; gap: 12px;">
+                <span style="padding: 8px 12px; background: #f8f9fb; border-radius: 8px; font-size: 0.9rem;">
+                    <strong>해초</strong> ${format(materialData.seaweed || 0)}
+                </span>
+                <span style="padding: 8px 12px; background: #f8f9fb; border-radius: 8px; font-size: 0.9rem;">
+                    <strong>먹물</strong> ${format(materialData.ink || 0)}
+                </span>
+            </div>
+        `;
+        document.getElementById("result-material-2").innerHTML = materialHTML;
 
-        updateText("result-coral-2",
-            `관 ${format(materialData.coral_guard || 0)}, ` +
-            `사방 ${format(materialData.coral_wave || 0)}, ` +
-            `거품 ${format(materialData.coral_chaos || 0)}, ` +
-            `불 ${format(materialData.coral_life || 0)}, ` +
-            `뇌 ${format(materialData.coral_decay || 0)}`
-        );
+        // 산호 - 텍스트 표시
+        const coralHTML = `
+            <div style="display: flex; flex-wrap: wrap; gap: 12px;">
+                <span style="padding: 8px 12px; background: #f8f9fb; border-radius: 8px; font-size: 0.9rem;">
+                    <strong>관</strong> ${format(materialData.coral_guard || 0)}
+                </span>
+                <span style="padding: 8px 12px; background: #f8f9fb; border-radius: 8px; font-size: 0.9rem;">
+                    <strong>사방</strong> ${format(materialData.coral_wave || 0)}
+                </span>
+                <span style="padding: 8px 12px; background: #f8f9fb; border-radius: 8px; font-size: 0.9rem;">
+                    <strong>거품</strong> ${format(materialData.coral_chaos || 0)}
+                </span>
+                <span style="padding: 8px 12px; background: #f8f9fb; border-radius: 8px; font-size: 0.9rem;">
+                    <strong>불</strong> ${format(materialData.coral_life || 0)}
+                </span>
+                <span style="padding: 8px 12px; background: #f8f9fb; border-radius: 8px; font-size: 0.9rem;">
+                    <strong>뇌</strong> ${format(materialData.coral_decay || 0)}
+                </span>
+            </div>
+        `;
+        document.getElementById("result-coral-2").innerHTML = coralHTML;
 
-        updateText("result-extra-2",
-            `청금석 블록 ${format(materialData.mineral_lapis || 0)}, ` +
-            `레드스톤 블록 ${format(materialData.mineral_redstone || 0)}, ` +
-            `철 ${format(materialData.mineral_iron || 0)}, ` +
-            `금 ${format(materialData.mineral_gold || 0)}, ` +
-            `다이아 ${format(materialData.mineral_diamond || 0)}`
-        );
+        // 광물 - 텍스트 표시
+        const extraHTML = `
+            <div style="display: flex; flex-wrap: wrap; gap: 12px;">
+                <span style="padding: 8px 12px; background: #f8f9fb; border-radius: 8px; font-size: 0.9rem;">
+                    <strong>청금석 블록</strong> ${format(materialData.mineral_lapis || 0)}
+                </span>
+                <span style="padding: 8px 12px; background: #f8f9fb; border-radius: 8px; font-size: 0.9rem;">
+                    <strong>레드스톤 블록</strong> ${format(materialData.mineral_redstone || 0)}
+                </span>
+                <span style="padding: 8px 12px; background: #f8f9fb; border-radius: 8px; font-size: 0.9rem;">
+                    <strong>철</strong> ${format(materialData.mineral_iron || 0)}
+                </span>
+                <span style="padding: 8px 12px; background: #f8f9fb; border-radius: 8px; font-size: 0.9rem;">
+                    <strong>금</strong> ${format(materialData.mineral_gold || 0)}
+                </span>
+                <span style="padding: 8px 12px; background: #f8f9fb; border-radius: 8px; font-size: 0.9rem;">
+                    <strong>다이아</strong> ${format(materialData.mineral_diamond || 0)}
+                </span>
+            </div>
+        `;
+        document.getElementById("result-extra-2").innerHTML = extraHTML;
 
         if (resultCard) resultCard.style.display = 'block';
         window.last2StarResult = r;
@@ -396,5 +439,5 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    console.log("✅ 2성 계산기 초기화 완료 (최적화 버전)");
+    console.log("✅ 2성 계산기 초기화 완료 (카드형 출력)");
 });

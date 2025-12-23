@@ -10,10 +10,10 @@
 }
 
 .switch-label {
-    user-select: none; /* 텍스트 드래그 방지 */
-    -webkit-user-select: none; /* Safari */
-    -moz-user-select: none; /* Firefox */
-    -ms-user-select: none; /* IE/Edge */
+    user-select: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
 }
 
 /* =========================
@@ -29,12 +29,10 @@
   width: 100%;
 }
 
-/* 성급 라디오 버튼 숨기기 */
 .star-toggle input[type="radio"] {
   display: none;
 }
 
-/* 성급 라벨 스타일 */
 .star-toggle label {
   padding: 8px 18px;
   border-radius: 999px;
@@ -47,14 +45,12 @@
   user-select: none;
 }
 
-/* 선택된 상태 */
 .star-toggle input[type="radio"]:checked + label {
   background: #1e6fd9;
   color: #fff;
   border-color: #1e6fd9;
 }
 
-/* 마우스 오버 */
 .star-toggle label:hover {
   background: #d0e4ff;
 }
@@ -62,7 +58,6 @@
 /* =========================
    세트 스위치
 ========================= */
-/* 스위치 컨테이너 */
 .star-toggle .switcher-set {
   margin-left: auto;
   position: relative;
@@ -70,14 +65,12 @@
   height: 26px;
 }
 
-/* 체크박스 숨기기 */
 .star-toggle .switcher-set input {
   opacity: 0;
   width: 0;
   height: 0;
 }
 
-/* 스위치 라벨 디자인 */
 .star-toggle .switcher-set label {
   position: absolute;
   cursor: pointer;
@@ -90,13 +83,11 @@
   transition: background-color 0.4s, box-shadow 0.3s;
 }
 
-/* 스위치 호버 효과 */
 .star-toggle .switcher-set label:hover {
   background-color: #b8b8b8;
   box-shadow: 0 2px 8px rgba(0,0,0,0.15);
 }
 
-/* 스위치 안 원 */
 .star-toggle .switcher-set label:before {
   position: absolute;
   content: "";
@@ -109,17 +100,14 @@
   transition: transform 0.4s, box-shadow 0.3s;
 }
 
-/* 원 호버 효과 */
 .star-toggle .switcher-set label:hover:before {
   box-shadow: 0 2px 6px rgba(0,0,0,0.2);
 }
 
-/* 체크되면 오른쪽으로 이동 + 색상 변경 */
 .star-toggle .switcher-set input:checked + label {
   background-color: #1e6fd9;
 }
 
-/* 체크된 상태 호버 */
 .star-toggle .switcher-set input:checked + label:hover {
   background-color: #1558b0;
   box-shadow: 0 2px 8px rgba(30, 111, 217, 0.3);
@@ -130,10 +118,8 @@
 }
 
 /* =========================
-   고급 입력 모드 스위치 추가
+   고급 입력 모드 스위치
 ========================= */
-
-/* 스위치 컨테이너 - 여러 스위치를 가로로 배치 */
 .switch-container {
     margin-left: auto;
     display: flex;
@@ -141,7 +127,6 @@
     align-items: center;
 }
 
-/* 개별 스위치 래퍼 */
 .switch-wrapper {
     display: flex;
     align-items: center;
@@ -155,7 +140,6 @@
     background-color: rgba(208, 228, 255, 0.3);
 }
 
-/* 스위치 레이블 텍스트 */
 .switch-label {
     font-size: 0.85rem;
     color: #555;
@@ -169,7 +153,6 @@
     color: #1e6fd9;
 }
 
-/* 스위치 자체 스타일 */
 .switcher-advanced {
     position: relative;
     width: 50px;
@@ -231,8 +214,6 @@
 /* =========================
    고급 입력 섹션
 ========================= */
-
-/* 고급 입력 전체 영역 */
 .advanced-inputs {
     display: none;
     margin-top: 20px;
@@ -256,7 +237,6 @@
     }
 }
 
-/* 개별 고급 섹션 (정수/핵) */
 .advanced-section {
     margin-bottom: 20px;
 }
@@ -329,14 +309,14 @@ button:hover {
    결과 카드
 ========================= */
 .result-card {
-    margin-top: 24px;
+    margin: 24px auto;
     padding: 22px;
     background: #ffffff;
     border-radius: 16px;
     box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+    max-width: 900px;
 }
 
-/* 헤더 */
 .result-header {
     display: flex;
     justify-content: space-between;
@@ -383,10 +363,9 @@ button:hover {
     color: #1e6fd9;
 }
 
-/* ===============================
+/* =========================
    정보탭 전문가 입력 UI
-   =============================== */
-
+========================= */
 #tab-info #info-expert {
     background-color: #f7f9fc;
     border: 1px solid #d1d9e6;
@@ -404,7 +383,6 @@ button:hover {
     margin-bottom: 16px;
 }
 
-/* 행 스타일 */
 #tab-info #info-expert .fish-row {
     display: flex;
     align-items: center;
@@ -412,14 +390,12 @@ button:hover {
     margin-bottom: 12px;
 }
 
-/* 레이블 스타일 */
 #tab-info #info-expert .fish-label {
     font-size: 0.95rem;
     color: #34495e;
     flex: 1;
 }
 
-/* 입력창 스타일 */
 #tab-info #info-expert .input-area {
     flex: 1;
     display: flex;
@@ -436,7 +412,6 @@ button:hover {
     transition: border-color 0.2s, box-shadow 0.2s;
 }
 
-/* 입력창 포커스 효과 */
 #tab-info #info-expert .input-area input:focus {
     border-color: #4a90e2;
     box-shadow: 0 0 4px rgba(74,144,226,0.3);
@@ -473,14 +448,12 @@ input[type=number] {
     background-image: linear-gradient(to right, #f7f9fc 0%, #e4ebf5 51%, #f7f9fc 100%);
 }
 
-/* 블록 호버 시 효과 */
 #tab-info #info-expert-rod-row:hover {
     transform: translateY(-3px);
     box-shadow: 0 10px 25px rgba(0,0,0,0.12);
     background-position: right center;
 }
 
-/* 레이블 */
 #tab-info #info-expert-rod-row .fish-label {
     margin-right: 12px;
     white-space: nowrap;
@@ -488,7 +461,6 @@ input[type=number] {
     color: #2a3f54;
 }
 
-/* 입력창 */
 #tab-info #info-expert-rod-row input {
     width: 80px;
     padding: 6px 10px;
@@ -500,14 +472,14 @@ input[type=number] {
     transition: box-shadow 0.2s ease;
 }
 
-/* 입력창 포커스 */
 #tab-info #info-expert-rod-row input:focus {
     outline: none;
     box-shadow: 0 0 4px rgba(74,144,226,0.3);
 }
 
-/* ===========정보토글==============*/
-
+/* =========================
+   정보 토글
+========================= */
 .info-btn {
     margin-left: 6px;
     font-size: 13px;
@@ -516,7 +488,6 @@ input[type=number] {
     user-select: none;
 }
 
-/* 설명 박스 */
 .expert-desc {
     width: 100%;
     margin: 6px 0 12px 0;
@@ -545,7 +516,6 @@ input[type=number] {
     margin: 0 auto 40px auto;
 }
 
-/* 제목 + 전문가 정보 */
 .stamina-header {
     display: flex;
     flex-direction: column;
@@ -566,7 +536,6 @@ input[type=number] {
     text-align: center;
 }
 
-/* 입력 영역: 가로 배치 */
 .stamina-inputs-horizontal {
     display: flex;
     gap: 12px;
@@ -575,7 +544,6 @@ input[type=number] {
     margin-top: 8px;
 }
 
-/* 입력 라벨 */
 .stamina-input-label {
     display: flex;
     flex-direction: column;
@@ -596,7 +564,6 @@ input[type=number] {
     box-sizing: border-box;
 }
 
-/* 계산 버튼 */
 .stamina-button-wrapper {
     text-align: center;
     margin-top: 12px;
@@ -619,7 +586,6 @@ input[type=number] {
     background: #1558b0;
 }
 
-/* 스태미나 결과 항목 */
 .stamina-result-products {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
@@ -628,7 +594,6 @@ input[type=number] {
     text-align: center;
 }
 
-/* 개별 카드 */
 .stamina-result-products div {
     background: #f8f9fb;
     border-radius: 12px;
@@ -638,7 +603,6 @@ input[type=number] {
     transition: transform 0.2s ease, box-shadow 0.3s ease, background 0.3s ease;
 }
 
-/* 수량 강조 */
 .stamina-result-products span {
     display: block;
     margin-top: 6px;
@@ -652,6 +616,100 @@ input[type=number] {
   height: 1.4em;
   vertical-align: middle;
   margin-right: 4px;
+}
+
+/* =========================
+   재료 카드형 그리드 스타일
+========================= */
+
+/* 재료 섹션 전체 레이아웃 */
+.result-section {
+  margin-bottom: 20px;
+  text-align: left;
+}
+
+.result-section h4 {
+  margin-bottom: 12px;
+  font-size: 0.95rem;
+  color: #333;
+  font-weight: 600;
+}
+
+/* 재료 그리드 - 자동으로 맞춰지는 카드형 */
+.result-materials-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
+  gap: 8px;
+  margin-bottom: 16px;
+  max-width: 500px;
+}
+
+/* 개별 재료 카드 */
+.material-card {
+  background: linear-gradient(135deg, #f8f9fb 0%, #ffffff 100%);
+  border-radius: 10px;
+  padding: 10px 6px;
+  text-align: center;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+  border: 1px solid rgba(30, 111, 217, 0.1);
+  position: relative;
+  overflow: hidden;
+  aspect-ratio: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.material-card::before {
+  display: none;
+}
+
+/* 재료 카드 아이콘 */
+.material-card .icon {
+  width: 28px;
+  height: 28px;
+  margin: 0 auto 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  background: transparent;
+  border-radius: 6px;
+}
+
+.material-card .icon img {
+  width: 22px;
+  height: 22px;
+  object-fit: contain;
+  filter: drop-shadow(0 2px 4px rgba(0,0,0,0.1));
+  background: transparent;
+  mix-blend-mode: multiply;
+  user-select: none;
+  -webkit-user-drag: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  pointer-events: none;
+}
+
+/* 재료 이름 */
+.material-card .name {
+  font-size: 0.7rem;
+  color: #555;
+  margin-bottom: 3px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-weight: 500;
+  letter-spacing: -0.3px;
+  width: 100%;
+}
+
+/* 재료 수량 */
+.material-card .value {
+  font-size: 1rem;
+  font-weight: 500;
+  color: #555;
 }
 
 /* =========================
@@ -681,5 +739,62 @@ input[type=number] {
 
     #tab-info #info-expert .input-area input {
         width: 100%;
+    }
+
+    .result-materials-grid {
+        grid-template-columns: repeat(auto-fill, minmax(90px, 1fr));
+        gap: 8px;
+    }
+    
+    .material-card {
+        padding: 12px 8px;
+    }
+    
+    .material-card .icon {
+        width: 32px;
+        height: 32px;
+    }
+    
+    .material-card .icon img {
+        width: 24px;
+        height: 24px;
+    }
+    
+    .material-card .name {
+        font-size: 0.7rem;
+    }
+    
+    .material-card .value {
+        font-size: 1rem;
+    }
+}
+
+/* 반응형 - 모바일 */
+@media (max-width: 480px) {
+    .result-materials-grid {
+        grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
+        gap: 6px;
+    }
+    
+    .material-card {
+        padding: 10px 6px;
+    }
+    
+    .material-card .icon {
+        width: 28px;
+        height: 28px;
+    }
+    
+    .material-card .icon img {
+        width: 22px;
+        height: 22px;
+    }
+    
+    .material-card .name {
+        font-size: 0.65rem;
+    }
+    
+    .material-card .value {
+        font-size: 0.95rem;
     }
 }
