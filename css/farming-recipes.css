@@ -217,10 +217,10 @@
 /* 컴팩트 테이블 래퍼 */
 .table-wrapper-compact {
   overflow-x: auto;
+  overflow-y: auto;
   border-radius: 6px;
   border: 1px solid var(--color-border, #e0e0e0);
-  max-height: 500px;
-  overflow-y: auto;
+  height: 500px; /* 고정 높이 */
 }
 
 /* 스크롤바 스타일링 */
@@ -410,7 +410,7 @@
   }
 
   .table-wrapper-compact {
-    max-height: 400px;
+    height: 400px; /* 모바일에서는 조금 작게 */
   }
 
   .recipe-table-compact,
