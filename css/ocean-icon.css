@@ -1,10 +1,8 @@
 /* =========================
-   OCEAN ICONS - 아이콘 전용 스타일
+   해양 아이콘 전용 스타일
 ========================= */
 
-/* =========================
-   아이템 아이콘 (이모지)
-========================= */
+/* ===== 아이템 아이콘 (이모지) ===== */
 .item-icon {
   display: inline-block;
   width: 1.2em;
@@ -24,17 +22,15 @@
   align-items: center;
 }
 
-/* =========================
-   정수/핵/재료 이미지 아이콘 (구버전 - 텍스트 형태용)
-========================= */
-.essence-item, 
-.core-item, 
+/* ===== 재료 아이콘 (이미지) ===== */
+.essence-item,
+.core-item,
 .material-item,
 .fish-item,
 .block-item {
   display: inline-flex;
   align-items: center;
-  margin-right: 12px;
+  margin-right: var(--spacing-md);
   white-space: nowrap;
   user-select: none;
   -webkit-user-select: none;
@@ -42,8 +38,8 @@
   -ms-user-select: none;
 }
 
-.essence-item img, 
-.core-item img, 
+.essence-item img,
+.core-item img,
 .material-item img,
 .fish-item img,
 .block-item img {
@@ -59,9 +55,7 @@
   pointer-events: none;
 }
 
-/* =========================
-   아이콘 크기 변형 (필요시)
-========================= */
+/* ===== 아이콘 크기 변형 ===== */
 .icon-small img {
   width: 16px;
   height: 16px;
@@ -77,29 +71,25 @@
   height: 24px;
 }
 
-/* =========================
-   로딩 중 아이콘 대체 텍스트
-========================= */
+/* ===== 로딩 중 아이콘 대체 텍스트 ===== */
 .essence-item img[alt],
 .core-item img[alt],
 .material-item img[alt] {
-  font-size: 0.85rem;
+  font-size: var(--font-size-sm);
   color: #666;
 }
 
-/* =========================
-   반응형 - 모바일
-========================= */
+/* ===== 반응형 - 모바일 ===== */
 @media (max-width: 768px) {
-  .essence-item, 
-  .core-item, 
+  .essence-item,
+  .core-item,
   .material-item {
-    margin-right: 8px;
-    font-size: 0.9rem;
+    margin-right: var(--spacing-sm);
+    font-size: var(--font-size-base);
   }
-  
-  .essence-item img, 
-  .core-item img, 
+
+  .essence-item img,
+  .core-item img,
   .material-item img {
     width: 18px;
     height: 18px;

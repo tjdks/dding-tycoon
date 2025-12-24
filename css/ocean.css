@@ -1,24 +1,13 @@
 /* =========================
-   OCEAN – Result Focus UI
+   해양 페이지 전용 스타일
 ========================= */
 
-/* 페이지 기본 */
+/* ===== 페이지 기본 ===== */
 .page {
-    max-width: 1100px;
-    margin: 0 auto;
-    padding: 24px 20px;
+  max-width: 1100px;
 }
 
-.switch-label {
-    user-select: none;
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-}
-
-/* =========================
-   성급 토글
-========================= */
+/* ===== 성급 토글 ===== */
 .star-toggle {
   display: flex;
   align-items: center;
@@ -27,6 +16,7 @@
   position: relative;
   padding: 10px 0;
   width: 100%;
+  flex-wrap: wrap;
 }
 
 .star-toggle input[type="radio"] {
@@ -35,600 +25,284 @@
 
 .star-toggle label {
   padding: 8px 18px;
-  border-radius: 999px;
-  border: 1px solid #d0d0d0;
+  border-radius: var(--border-radius-full);
+  border: 1px solid var(--color-border-light);
   cursor: pointer;
-  font-size: 0.9rem;
+  font-size: var(--font-size-base);
   background: #fafafa;
-  transition: background 0.2s ease;
+  transition: all var(--transition-base);
   text-align: center;
-  user-select: none;
 }
 
 .star-toggle input[type="radio"]:checked + label {
-  background: #1e6fd9;
-  color: #fff;
-  border-color: #1e6fd9;
+  background: var(--color-primary);
+  color: var(--color-bg-white);
+  border-color: var(--color-primary);
 }
 
 .star-toggle label:hover {
-  background: #d0e4ff;
+  background: var(--color-bg-hover);
 }
 
-/* =========================
-   세트 스위치
-========================= */
-.star-toggle .switcher-set {
+/* ===== 스위치 컨테이너 ===== */
+.switch-container {
   margin-left: auto;
+  display: flex;
+  gap: 20px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.switch-wrapper {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+  padding: 4px 8px;
+  border-radius: var(--border-radius-md);
+  transition: background-color var(--transition-base);
+}
+
+.switch-wrapper:hover {
+  background-color: rgba(208, 228, 255, 0.3);
+}
+
+.switch-label {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-secondary);
+  font-weight: var(--font-weight-medium);
+  white-space: nowrap;
+  transition: color var(--transition-base);
+  cursor: pointer;
+}
+
+.switch-wrapper:hover .switch-label {
+  color: var(--color-primary);
+}
+
+/* 스위처 스타일 (components.css의 .switch 재사용) */
+.switcher-set,
+.switcher-advanced {
   position: relative;
   width: 50px;
   height: 26px;
+  display: inline-block;
 }
 
-.star-toggle .switcher-set input {
+.switcher-set input,
+.switcher-advanced input {
   opacity: 0;
   width: 0;
   height: 0;
 }
 
-.star-toggle .switcher-set label {
+.switcher-set label,
+.switcher-advanced label {
   position: absolute;
   cursor: pointer;
-  background-color: #ccc;
-  border-radius: 24px;
+  background-color: var(--color-border-light);
+  border-radius: var(--border-radius-full);
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
-  transition: background-color 0.4s, box-shadow 0.3s;
+  transition: background-color var(--transition-slow), box-shadow var(--transition-base);
 }
 
-.star-toggle .switcher-set label:hover {
+.switcher-set label:hover,
+.switcher-advanced label:hover {
   background-color: #b8b8b8;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+  box-shadow: var(--shadow-md);
 }
 
-.star-toggle .switcher-set label:before {
+.switcher-set label::before,
+.switcher-advanced label::before {
   position: absolute;
   content: "";
   height: 20px;
   width: 20px;
   left: 2px;
   bottom: 2px;
-  background-color: white;
+  background-color: var(--color-bg-white);
   border-radius: 50%;
-  transition: transform 0.4s, box-shadow 0.3s;
+  transition: transform var(--transition-slow), box-shadow var(--transition-base);
 }
 
-.star-toggle .switcher-set label:hover:before {
-  box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+.switcher-set label:hover::before,
+.switcher-advanced label:hover::before {
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
 }
 
-.star-toggle .switcher-set input:checked + label {
-  background-color: #1e6fd9;
+.switcher-set input:checked + label,
+.switcher-advanced input:checked + label {
+  background-color: var(--color-primary);
 }
 
-.star-toggle .switcher-set input:checked + label:hover {
-  background-color: #1558b0;
+.switcher-set input:checked + label:hover,
+.switcher-advanced input:checked + label:hover {
+  background-color: var(--color-primary-hover);
   box-shadow: 0 2px 8px rgba(30, 111, 217, 0.3);
 }
 
-.star-toggle .switcher-set input:checked + label:before {
+.switcher-set input:checked + label::before,
+.switcher-advanced input:checked + label::before {
   transform: translateX(24px);
 }
 
-/* =========================
-   고급 입력 모드 스위치
-========================= */
-.switch-container {
-    margin-left: auto;
-    display: flex;
-    gap: 20px;
-    align-items: center;
-}
-
-.switch-wrapper {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    padding: 4px 8px;
-    border-radius: 8px;
-    transition: background-color 0.2s;
-}
-
-.switch-wrapper:hover {
-    background-color: rgba(208, 228, 255, 0.3);
-}
-
-.switch-label {
-    font-size: 0.85rem;
-    color: #555;
-    font-weight: 500;
-    white-space: nowrap;
-    transition: color 0.2s;
-    cursor: pointer;
-}
-
-.switch-wrapper:hover .switch-label {
-    color: #1e6fd9;
-}
-
-.switcher-advanced {
-    position: relative;
-    width: 50px;
-    height: 26px;
-}
-
-.switcher-advanced input {
-    opacity: 0;
-    width: 0;
-    height: 0;
-}
-
-.switcher-advanced label {
-    position: absolute;
-    cursor: pointer;
-    background-color: #ccc;
-    border-radius: 24px;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    transition: background-color 0.4s, box-shadow 0.3s;
-}
-
-.switcher-advanced label:hover {
-    background-color: #b8b8b8;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.15);
-}
-
-.switcher-advanced label:before {
-    position: absolute;
-    content: "";
-    height: 20px;
-    width: 20px;
-    left: 2px;
-    bottom: 2px;
-    background-color: white;
-    border-radius: 50%;
-    transition: transform 0.4s, box-shadow 0.3s;
-}
-
-.switcher-advanced label:hover:before {
-    box-shadow: 0 2px 6px rgba(0,0,0,0.2);
-}
-
-.switcher-advanced input:checked + label {
-    background-color: #1e6fd9;
-}
-
-.switcher-advanced input:checked + label:hover {
-    background-color: #1558b0;
-    box-shadow: 0 2px 8px rgba(30, 111, 217, 0.3);
-}
-
-.switcher-advanced input:checked + label:before {
-    transform: translateX(24px);
-}
-
-/* =========================
-   고급 입력 섹션
-========================= */
+/* ===== 고급 입력 섹션 ===== */
 .advanced-inputs {
-    display: none;
-    margin-top: 20px;
-    padding-top: 20px;
-    border-top: 2px dashed #d0d0d0;
-    animation: fadeIn 0.3s ease;
+  display: none;
+  margin-top: 20px;
+  padding-top: 20px;
+  border-top: 2px dashed var(--color-border-light);
+  animation: fadeIn 0.3s ease;
 }
 
 .advanced-inputs.active {
-    display: block;
+  display: block;
 }
 
 @keyframes fadeIn {
-    from {
-        opacity: 0;
-        transform: translateY(-10px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .advanced-section {
-    margin-bottom: 20px;
+  margin-bottom: 20px;
 }
 
 .advanced-section h4 {
-    color: #1e6fd9;
-    margin-bottom: 12px;
-    font-size: 0.95rem;
-    font-weight: 600;
-    display: flex;
-    align-items: center;
-    gap: 6px;
+  color: var(--color-primary);
+  margin-bottom: var(--spacing-md);
+  font-size: var(--font-size-base);
+  font-weight: var(--font-weight-semibold);
+  display: flex;
+  align-items: center;
+  gap: 6px;
 }
 
 .advanced-section h4::before {
-    content: "▸";
-    color: #1e6fd9;
+  content: "▸";
+  color: var(--color-primary);
 }
 
-/* =========================
-   입력 영역
-========================= */
-.star-level h3 {
-    margin-bottom: 12px;
-    font-size: 1.1rem;
-}
-
+/* ===== 입력 그리드 ===== */
 .input-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-    gap: 14px;
-    margin-bottom: 16px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 14px;
+  margin-bottom: var(--spacing-lg);
 }
 
 .input-grid label {
-    display: flex;
-    flex-direction: column;
-    font-size: 0.85rem;
-    color: #444;
+  display: flex;
+  flex-direction: column;
+  font-size: var(--font-size-sm);
+  color: var(--color-text-secondary);
 }
 
 .input-grid input {
-    margin-top: 6px;
-    padding: 8px;
-    border-radius: 8px;
-    border: 1px solid #ccc;
-    text-align: center;
+  margin-top: 6px;
+  padding: 8px;
+  border-radius: var(--border-radius-md);
+  border: 1px solid var(--color-border-light);
+  text-align: center;
+  transition: border-color var(--transition-base), box-shadow var(--transition-base);
 }
 
-/* =========================
-   계산 버튼
-========================= */
+.input-grid input:focus {
+  outline: none;
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+}
+
+/* ===== 계산 버튼 ===== */
 button {
-    margin-top: 6px;
-    padding: 10px 22px;
-    border-radius: 10px;
-    border: none;
-    background: #1e6fd9;
-    color: #fff;
-    font-weight: 600;
-    cursor: pointer;
-    transition: background 0.2s;
+  margin-top: 6px;
+  padding: 8px 16px;
+  border-radius: var(--border-radius-md);
+  border: none;
+  background: var(--color-primary);
+  color: var(--color-bg-white);
+  font-weight: var(--font-weight-semibold);
+  cursor: pointer;
+  transition: all var(--transition-base);
+  font-size: var(--font-size-sm);
 }
 
 button:hover {
-    background: #1558b0;
+  background: var(--color-primary-hover);
+  box-shadow: var(--shadow-sm);
 }
 
-/* =========================
-   결과 카드
-========================= */
+/* ===== 결과 카드 ===== */
 .result-card {
-    margin: 24px auto;
-    padding: 20px;
-    background: #ffffff;
-    border-radius: 14px;
-    box-shadow: 0 7px 22px rgba(0,0,0,0.08);
-    max-width: 810px;
+  margin: var(--spacing-xl) auto;
+  padding: 20px;
+  background: var(--color-bg-white);
+  border-radius: var(--border-radius-2xl);
+  box-shadow: var(--shadow-xl);
+  max-width: var(--max-width-narrow);
 }
 
 .result-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    border-bottom: 1px solid #eee;
-    padding-bottom: 11px;
-    margin-bottom: 14px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid var(--color-border);
+  padding-bottom: 11px;
+  margin-bottom: 14px;
+  flex-wrap: wrap;
+  gap: var(--spacing-md);
 }
 
 .result-header h3 {
-    margin: 0;
-    font-size: 1rem;
+  margin: 0;
+  font-size: var(--font-size-md);
 }
 
 .result-gold {
-    font-size: 1.17rem;
-    font-weight: 700;
-    color: #d62828;
+  font-size: 1.17rem;
+  font-weight: var(--font-weight-bold);
+  color: var(--color-danger);
 }
 
-/* =========================
-   제작 결과 카드
-========================= */
+/* ===== 제작 결과 카드 ===== */
 .result-products {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 11px;
-    margin-bottom: 18px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 11px;
+  margin-bottom: 18px;
 }
 
 .result-products div {
-    background: #f8f9fb;
-    border-radius: 11px;
-    padding: 13px 9px;
-    text-align: center;
-    font-size: 0.77rem;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    min-height: 72px;
-    line-height: 1.4;
+  background: var(--color-bg-card);
+  border-radius: 11px;
+  padding: 13px 9px;
+  text-align: center;
+  font-size: 0.77rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 72px;
+  line-height: 1.4;
 }
 
 .result-products span {
-    display: block;
-    margin-top: 7px;
-    font-size: 1.17rem;
-    font-weight: 700;
-    color: #1e6fd9;
+  display: block;
+  margin-top: 7px;
+  font-size: 1.17rem;
+  font-weight: var(--font-weight-bold);
+  color: var(--color-primary);
 }
 
-/* =========================
-   정보탭 전문가 입력 UI
-========================= */
-#tab-info #info-expert {
-    background-color: #f7f9fc;
-    border: 1px solid #d1d9e6;
-    border-radius: 12px;
-    padding: 20px;
-    max-width: 600px;
-    margin-top: 20px;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
-}
-
-#tab-info #info-expert h3 {
-    font-size: 1.2rem;
-    font-weight: 600;
-    color: #2a3f54;
-    margin-bottom: 16px;
-}
-
-#tab-info #info-expert .fish-row {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    margin-bottom: 12px;
-}
-
-#tab-info #info-expert .fish-label {
-    font-size: 0.95rem;
-    color: #34495e;
-    flex: 1;
-}
-
-#tab-info #info-expert .input-area {
-    flex: 1;
-    display: flex;
-    justify-content: flex-end;
-}
-
-#tab-info #info-expert .input-area input {
-    width: 80px;
-    padding: 6px 10px;
-    font-size: 0.95rem;
-    border: 1px solid #ccc;
-    border-radius: 6px;
-    text-align: right;
-    transition: border-color 0.2s, box-shadow 0.2s;
-}
-
-#tab-info #info-expert .input-area input:focus {
-    border-color: #4a90e2;
-    box-shadow: 0 0 4px rgba(74,144,226,0.3);
-    outline: none;
-}
-
-/* 모든 number input 화살표 제거 */
-input[type=number]::-webkit-inner-spin-button,
-input[type=number]::-webkit-outer-spin-button {
-    -webkit-appearance: none;
-    margin: 0;
-}
-
-input[type=number] {
-    -moz-appearance: textfield;
-}
-
-/* 낚싯대 스펙 블록 */
-#tab-info #info-expert-rod-row {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 12px 20px;
-    max-width: 300px;
-    margin: 20px auto;
-    border-radius: 12px;
-    box-shadow: 0 6px 15px rgba(0,0,0,0.08);
-    background-size: 200% auto;
-    color: #2a3f54;
-    font-weight: 500;
-    text-align: center;
-    cursor: default;
-    transition: transform 0.3s ease, box-shadow 0.3s ease, background-position 0.5s ease;
-    background-image: linear-gradient(to right, #f7f9fc 0%, #e4ebf5 51%, #f7f9fc 100%);
-}
-
-#tab-info #info-expert-rod-row:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 10px 25px rgba(0,0,0,0.12);
-    background-position: right center;
-}
-
-#tab-info #info-expert-rod-row .fish-label {
-    margin-right: 12px;
-    white-space: nowrap;
-    font-weight: 600;
-    color: #2a3f54;
-}
-
-#tab-info #info-expert-rod-row input {
-    width: 80px;
-    padding: 6px 10px;
-    font-size: 0.95rem;
-    border: 1px solid #ccc;
-    border-radius: 6px;
-    text-align: right;
-    background-color: #fff;
-    transition: box-shadow 0.2s ease;
-}
-
-#tab-info #info-expert-rod-row input:focus {
-    outline: none;
-    box-shadow: 0 0 4px rgba(74,144,226,0.3);
-}
-
-/* =========================
-   정보 토글
-========================= */
-.info-btn {
-    margin-left: 6px;
-    font-size: 13px;
-    cursor: pointer;
-    color: #2563eb;
-    user-select: none;
-}
-
-.expert-desc {
-    width: 100%;
-    margin: 6px 0 12px 0;
-    padding: 8px 10px;
-    font-size: 12px;
-    color: #4b5563;
-    background-color: #f9fafb;
-    border-left: 3px solid #2563eb;
-    border-radius: 6px;
-    display: none;
-    line-height: 1.5;
-}
-
-/* =========================
-   스태미나 카드
-========================= */
-.stamina-card {
-    display: flex;
-    flex-direction: column;
-    gap: 16px;
-    padding: 24px;
-    border-radius: 16px;
-    box-shadow: 0 8px 24px rgba(0,0,0,0.08);
-    background: #ffffff;
-    max-width: 480px;
-    margin: 0 auto 40px auto;
-}
-
-.stamina-header {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 6px;
-    margin-bottom: 16px;
-}
-
-.stamina-header-title {
-    margin: 0;
-    font-size: 1.3rem;
-    font-weight: 600;
-}
-
-.stamina-header-expert {
-    font-size: 0.9rem;
-    color: #555;
-    text-align: center;
-}
-
-.stamina-inputs-horizontal {
-    display: flex;
-    gap: 12px;
-    justify-content: center;
-    align-items: flex-end;
-    margin-top: 8px;
-}
-
-.stamina-input-label {
-    display: flex;
-    flex-direction: column;
-    font-size: 0.9rem;
-    color: #444;
-    text-align: center;
-    width: 140px;
-}
-
-.stamina-input-label input,
-.stamina-input-label select {
-    margin-top: 6px;
-    padding: 8px;
-    border-radius: 8px;
-    border: 1px solid #ccc;
-    text-align: center;
-    width: 100%;
-    box-sizing: border-box;
-}
-
-.stamina-button-wrapper {
-    text-align: center;
-    margin-top: 12px;
-    width: auto;
-}
-
-.stamina-button-wrapper button {
-    padding: 10px 20px;
-    border-radius: 10px;
-    border: none;
-    background: #1e6fd9;
-    color: #fff;
-    font-weight: 600;
-    cursor: pointer;
-    min-width: 120px;
-    transition: background 0.2s;
-}
-
-.stamina-button-wrapper button:hover {
-    background: #1558b0;
-}
-
-.stamina-result-products {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
-    gap: 12px;
-    margin-top: 12px;
-    text-align: center;
-}
-
-.stamina-result-products div {
-    background: #f8f9fb;
-    border-radius: 12px;
-    padding: 14px 10px;
-    font-size: 0.85rem;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.04);
-    transition: transform 0.2s ease, box-shadow 0.3s ease, background 0.3s ease;
-}
-
-.stamina-result-products span {
-    display: block;
-    margin-top: 6px;
-    font-size: 1.2rem;
-    font-weight: 700;
-    color: #1e6fd9;
-}
-
-.result-icon {
-  width: 1.4em;
-  height: 1.4em;
-  vertical-align: middle;
-  margin-right: 4px;
-}
-
-/* =========================
-   재료 카드형 그리드 스타일
-========================= */
-
-/* 재료 섹션 전체 레이아웃 */
+/* ===== 결과 섹션 ===== */
 .result-section {
   margin-bottom: 18px;
   text-align: left;
@@ -637,12 +311,12 @@ input[type=number] {
 .result-section h4 {
   margin-bottom: 11px;
   font-size: 0.86rem;
-  color: #333;
-  font-weight: 600;
+  color: var(--color-text);
+  font-weight: var(--font-weight-semibold);
   text-align: left;
 }
 
-/* 재료 그리드 - 자동으로 채워지는 레이아웃 */
+/* ===== 재료 카드 그리드 ===== */
 .result-materials-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(90px, 1fr));
@@ -651,14 +325,13 @@ input[type=number] {
   width: 100%;
 }
 
-/* 개별 재료 카드 */
 .material-card {
-  background: #f8f9fb;
+  background: var(--color-bg-card);
   border-radius: 9px;
   padding: 11px 7px;
   text-align: center;
-  box-shadow: 0 2px 7px rgba(0,0,0,0.04);
-  border: 1px solid rgba(0,0,0,0.04);
+  box-shadow: var(--shadow-sm);
+  border: 1px solid rgba(0, 0, 0, 0.04);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -667,7 +340,6 @@ input[type=number] {
   width: 100%;
 }
 
-/* 재료 카드 아이콘 */
 .material-card .icon {
   width: 29px;
   height: 29px;
@@ -686,7 +358,6 @@ input[type=number] {
   pointer-events: none;
 }
 
-/* 재료 이름 */
 .material-card .name {
   font-size: 0.68rem;
   color: #666;
@@ -695,101 +366,354 @@ input[type=number] {
   overflow: hidden;
   text-overflow: ellipsis;
   width: 100%;
-  font-weight: 500;
+  font-weight: var(--font-weight-medium);
 }
 
-/* 재료 수량 */
 .material-card .value {
-  font-size: 1rem;
-  font-weight: 600;
+  font-size: var(--font-size-md);
+  font-weight: var(--font-weight-semibold);
   color: #666;
 }
 
-/* =========================
-   반응형
-========================= */
-@media (max-width: 768px) {
-    .result-products {
-        grid-template-columns: 1fr;
-    }
-
-    .result-header {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 6px;
-    }
-
-    #tab-info #info-expert .fish-row {
-        flex-direction: column;
-        align-items: flex-start;
-    }
-
-    #tab-info #info-expert .input-area {
-        width: 100%;
-        justify-content: flex-start;
-        margin-top: 6px;
-    }
-
-    #tab-info #info-expert .input-area input {
-        width: 100%;
-    }
-
-    .result-materials-grid {
-        grid-template-columns: repeat(3, 1fr);
-        gap: 8px;
-    }
-    
-    .material-card {
-        padding: 10px 6px;
-        min-height: 80px;
-    }
-    
-    .material-card .icon {
-        width: 28px;
-        height: 28px;
-    }
-    
-    .material-card .icon img {
-        width: 24px;
-        height: 24px;
-    }
-    
-    .material-card .name {
-        font-size: 0.7rem;
-    }
-    
-    .material-card .value {
-        font-size: 1rem;
-    }
+/* ===== 정보탭 전문가 입력 ===== */
+#tab-info #info-expert {
+  background-color: #f7f9fc;
+  border: 1px solid #d1d9e6;
+  border-radius: var(--border-radius-xl);
+  padding: 20px;
+  max-width: 600px;
+  margin-top: 20px;
+  box-shadow: var(--shadow-md);
 }
 
-/* 반응형 - 모바일 */
+#tab-info #info-expert h3 {
+  font-size: 1.2rem;
+  font-weight: var(--font-weight-semibold);
+  color: #2a3f54;
+  margin-bottom: var(--spacing-lg);
+}
+
+#tab-info #info-expert .fish-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: var(--spacing-md);
+}
+
+#tab-info #info-expert .fish-label {
+  font-size: var(--font-size-base);
+  color: #34495e;
+  flex: 1;
+}
+
+#tab-info #info-expert .input-area {
+  flex: 1;
+  display: flex;
+  justify-content: flex-end;
+}
+
+#tab-info #info-expert .input-area input {
+  width: 80px;
+  padding: 6px 10px;
+  font-size: var(--font-size-base);
+  border: 1px solid var(--color-border-light);
+  border-radius: 6px;
+  text-align: right;
+  transition: border-color var(--transition-base), box-shadow var(--transition-base);
+}
+
+#tab-info #info-expert .input-area input:focus {
+  border-color: var(--color-primary);
+  box-shadow: 0 0 4px rgba(74, 144, 226, 0.3);
+  outline: none;
+}
+
+/* 낚싯대 스펙 블록 */
+#tab-info #info-expert-rod-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px 20px;
+  max-width: 300px;
+  margin: 20px auto;
+  border-radius: var(--border-radius-xl);
+  box-shadow: var(--shadow-lg);
+  background-size: 200% auto;
+  color: #2a3f54;
+  font-weight: var(--font-weight-medium);
+  text-align: center;
+  cursor: default;
+  transition: transform var(--transition-base), box-shadow var(--transition-base), background-position 0.5s ease;
+  background-image: linear-gradient(to right, #f7f9fc 0%, #e4ebf5 51%, #f7f9fc 100%);
+}
+
+#tab-info #info-expert-rod-row:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-xl);
+  background-position: right center;
+}
+
+#tab-info #info-expert-rod-row .fish-label {
+  margin-right: var(--spacing-md);
+  white-space: nowrap;
+  font-weight: var(--font-weight-semibold);
+  color: #2a3f54;
+}
+
+#tab-info #info-expert-rod-row input {
+  width: 80px;
+  padding: 6px 10px;
+  font-size: var(--font-size-base);
+  border: 1px solid var(--color-border-light);
+  border-radius: 6px;
+  text-align: right;
+  background-color: var(--color-bg-white);
+  transition: box-shadow var(--transition-base);
+}
+
+#tab-info #info-expert-rod-row input:focus {
+  outline: none;
+  box-shadow: 0 0 4px rgba(74, 144, 226, 0.3);
+}
+
+/* ===== 정보 토글 ===== */
+.info-btn {
+  margin-left: 6px;
+  font-size: 13px;
+  cursor: pointer;
+  color: var(--color-primary);
+  user-select: none;
+}
+
+.expert-desc {
+  width: 100%;
+  margin: 6px 0 var(--spacing-md) 0;
+  padding: 8px 10px;
+  font-size: 12px;
+  color: #4b5563;
+  background-color: #f9fafb;
+  border-left: 3px solid var(--color-primary);
+  border-radius: 6px;
+  display: none;
+  line-height: 1.5;
+}
+
+/* ===== 스태미나 카드 ===== */
+.stamina-card {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-lg);
+  padding: var(--spacing-xl);
+  border-radius: var(--border-radius-2xl);
+  box-shadow: var(--shadow-xl);
+  background: var(--color-bg-white);
+  max-width: var(--max-width-compact);
+  margin: 0 auto 40px auto;
+}
+
+.stamina-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: var(--spacing-lg);
+}
+
+.stamina-header-title {
+  margin: 0;
+  font-size: var(--font-size-xl);
+  font-weight: var(--font-weight-semibold);
+}
+
+.stamina-header-expert {
+  font-size: var(--font-size-base);
+  color: var(--color-text-secondary);
+  text-align: center;
+}
+
+.stamina-inputs-horizontal {
+  display: flex;
+  gap: var(--spacing-md);
+  justify-content: center;
+  align-items: flex-end;
+  margin-top: var(--spacing-sm);
+  flex-wrap: wrap;
+}
+
+.stamina-input-label {
+  display: flex;
+  flex-direction: column;
+  font-size: var(--font-size-base);
+  color: var(--color-text-secondary);
+  text-align: center;
+  width: 140px;
+  flex-shrink: 0;
+}
+
+.stamina-input-label input,
+.stamina-input-label select {
+  margin-top: 6px;
+  padding: 8px;
+  border-radius: var(--border-radius-md);
+  border: 1px solid var(--color-border-light);
+  text-align: center;
+  width: 100%;
+  box-sizing: border-box;
+  transition: border-color var(--transition-base), box-shadow var(--transition-base);
+}
+
+.stamina-input-label input:focus,
+.stamina-input-label select:focus {
+  outline: none;
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+}
+
+.stamina-button-wrapper {
+  text-align: center;
+  margin-top: var(--spacing-md);
+  width: auto;
+}
+
+.stamina-button-wrapper button {
+  padding: 8px 16px;
+  border-radius: var(--border-radius-md);
+  border: none;
+  background: var(--color-primary);
+  color: var(--color-bg-white);
+  font-weight: var(--font-weight-semibold);
+  cursor: pointer;
+  min-width: 120px;
+  transition: all var(--transition-base);
+  font-size: var(--font-size-sm);
+}
+
+.stamina-button-wrapper button:hover {
+  background: var(--color-primary-hover);
+  box-shadow: var(--shadow-sm);
+}
+
+.stamina-result-products {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+  gap: var(--spacing-md);
+  margin-top: var(--spacing-md);
+  text-align: center;
+}
+
+.stamina-result-products div {
+  background: var(--color-bg-card);
+  border-radius: var(--border-radius-xl);
+  padding: 14px 10px;
+  font-size: var(--font-size-sm);
+  box-shadow: var(--shadow-sm);
+}
+
+.stamina-result-products span {
+  display: block;
+  margin-top: 6px;
+  font-size: 1.2rem;
+  font-weight: var(--font-weight-bold);
+  color: var(--color-primary);
+}
+
+/* ===== 반응형 ===== */
+@media (max-width: 768px) {
+  .result-products {
+    grid-template-columns: 1fr;
+  }
+
+  .result-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 6px;
+  }
+
+  #tab-info #info-expert .fish-row {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  #tab-info #info-expert .input-area {
+    width: 100%;
+    justify-content: flex-start;
+    margin-top: 6px;
+  }
+
+  #tab-info #info-expert .input-area input {
+    width: 100%;
+  }
+
+  .result-materials-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 8px;
+  }
+
+  .material-card {
+    padding: 10px 6px;
+    min-height: 80px;
+  }
+
+  .material-card .icon {
+    width: 28px;
+    height: 28px;
+  }
+
+  .material-card .icon img {
+    width: 24px;
+    height: 24px;
+  }
+
+  .material-card .name {
+    font-size: 0.7rem;
+  }
+
+  .material-card .value {
+    font-size: var(--font-size-md);
+  }
+
+  .switch-container {
+    margin-left: 0;
+    width: 100%;
+    justify-content: flex-start;
+  }
+
+  .stamina-inputs-horizontal {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .stamina-input-label {
+    width: 100%;
+  }
+}
+
 @media (max-width: 480px) {
-    .result-materials-grid {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 6px;
-    }
-    
-    .material-card {
-        padding: 8px 4px;
-        min-height: 70px;
-    }
-    
-    .material-card .icon {
-        width: 24px;
-        height: 24px;
-    }
-    
-    .material-card .icon img {
-        width: 20px;
-        height: 20px;
-    }
-    
-    .material-card .name {
-        font-size: 0.65rem;
-    }
-    
-    .material-card .value {
-        font-size: 0.95rem;
-    }
+  .result-materials-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 6px;
+  }
+
+  .material-card {
+    padding: 8px 4px;
+    min-height: 70px;
+  }
+
+  .material-card .icon {
+    width: 24px;
+    height: 24px;
+  }
+
+  .material-card .icon img {
+    width: 20px;
+    height: 20px;
+  }
+
+  .material-card .name {
+    font-size: 0.65rem;
+  }
+
+  .material-card .value {
+    font-size: 0.95rem;
+  }
 }

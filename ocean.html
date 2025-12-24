@@ -4,7 +4,12 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>🍎계산기 - 해양</title>
-  <link rel="stylesheet" href="css/style.css" />
+  
+  <!-- CSS 파일 로드 순서가 중요합니다 -->
+  <link rel="stylesheet" href="css/variables.css" />
+  <link rel="stylesheet" href="css/base.css" />
+  <link rel="stylesheet" href="css/layout.css" />
+  <link rel="stylesheet" href="css/components.css" />
   <link rel="stylesheet" href="css/ocean.css" />
   <link rel="stylesheet" href="css/ocean-icon.css" /> 
 </head>
@@ -78,7 +83,7 @@
                 </div>
             </div>
 
-            <div id="desc-premium" class="expert-desc">
+            <div id="desc-premium" class="expert-desc" style="display:none;">
                 <ul style="padding-left: 16px; margin: 0;">
                     <li><b>LV 1</b> – 연금품 판매가 +5%</li>
                     <li><b>LV 2</b> – 연금품 판매가 +7%</li>
@@ -247,7 +252,7 @@
             </div>
 
             <div class="result-products">
-              <div>영생의 아쿠티스 <span id="result-acutis-1">0</span></div>
+              <div>영상의 아쿠티스 <span id="result-acutis-1">0</span></div>
               <div>크라켄의 광란체 <span id="result-frenzy-1">0</span></div>
               <div>리바이던의 깃털 <span id="result-feather-1">0</span></div>
             </div>
@@ -369,7 +374,7 @@
             <label>성게 ★★★ <input type="number" id="input-urchin-3" min="0" value="0"></label>
           </div>
 
-          <!-- 고급 입력칸 (엘릭서/영약) -->
+          <!-- 고급 입력칸 (엘릭서/의약) -->
           <div class="advanced-inputs" id="advanced-inputs-3">
             <div class="advanced-section">
               <h4>보유 엘릭서</h4>
@@ -383,7 +388,7 @@
             </div>
 
             <div class="advanced-section">
-              <h4>보유 영약</h4>
+              <h4>보유 의약</h4>
               <div class="input-grid">
                 <label>불멸 재생 <input type="number" id="input-potion-immortal-3" min="0" value="0"></label>
                 <label>파동 장벽 <input type="number" id="input-potion-barrier-3" min="0" value="0"></label>
@@ -396,7 +401,7 @@
 
           <button onclick="run3StarOptimization()">3성 최대 골드 계산</button>
 
-          <div class="result-card" id="result-card-3" style="display:none;">
+          <div class="result-card" id="result-card-3">
             <div class="result-header">
               <h3>📊 최적 조합 결과</h3>
               <div class="result-gold">
@@ -417,7 +422,7 @@
             </div>
 
             <div class="result-section">
-              <h4>🔹 필요 영약 제작</h4>
+              <h4>🔹 필요 의약 제작</h4>
               <div id="result-core-3"></div>
             </div>
 
@@ -437,14 +442,6 @@
             </div>
           </div>
         </div>
-
-        <script>
-          function switchStarLevel(level){
-            const starCards = document.querySelectorAll('.star-level');
-            starCards.forEach(card => card.style.display = 'none');
-            document.getElementById('star-' + level).style.display = 'block';
-          }
-        </script>
       </div>
       
       <!-- 스태미나 탭 -->
@@ -488,15 +485,12 @@
     </section>
   </main>
 
-  <footer class="footer">© 몽실몽실</footer>
+  <footer class="footer">© 1x0x7</footer>
 
-  <script src="js/utill.js"></script>
-  <script src="js/expert.js"></script>
-  <script src="js/ocean1st.js"></script>
-  <script src="js/ocean2st.js"></script>
-  <script src="js/ocean3st.js"></script>
-  <script src="js/oceanstamina.js"></script>
-  <script src="js/oceaninit.js"></script>
+  <!-- 모듈 방식으로 스크립트 로드 -->
+  <script type="module" src="js/ocean-init.js"></script>
+  
+  <!-- 레거시 탭 전환 (비모듈) -->
   <script src="js/script.js"></script>
 
 </body>

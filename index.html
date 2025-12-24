@@ -4,7 +4,12 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>🍎계산기</title>
-  <link rel="stylesheet" href="css/style.css" />
+  
+  <!-- CSS 파일 로드 순서가 중요합니다 -->
+  <link rel="stylesheet" href="css/variables.css" />
+  <link rel="stylesheet" href="css/base.css" />
+  <link rel="stylesheet" href="css/layout.css" />
+  <link rel="stylesheet" href="css/components.css" />
 </head>
 <body>
 
@@ -15,7 +20,7 @@
       <div class="logo">계산기</div>
 
       <nav class="main-nav">
-        <a href="index.html">홈</a>
+        <a href="index.html" class="active">홈</a>
         <a href="mining.html">채광</a>
         <a href="farming.html">재배</a>
         <a href="ocean.html">해양</a>
@@ -27,27 +32,68 @@
   <!-- ===== 2차 탭 (하위 탭) ===== -->
   <div class="sub-header">
     <div class="sub-header-inner">
-      <!-- 예시: 채광 페이지 -->
       <a href="#" class="active" data-target="tab-info">내 정보</a>
     </div>
   </div>
 
   <!-- ===== 메인 콘텐츠 ===== -->
-    <main class="page">
+  <main class="page">
     <section class="content-area">
 
-        <div id="tab-info" class="tab-content">
-        <h2 class="content-title">내 정보</h2>
-        <p>
-            해야하는거 : 해양 계산기 최적화, 디자인 개선, 조합법 추가? 할까말까
-        </p>
+      <div id="tab-info" class="tab-content">
+        <h2 class="content-title">현황</h2>
+        
+        <div class="card" style="margin-bottom: 20px;">
+          <div class="card-header">
+            <h3 class="card-title">완료</h3>
+          </div>
+          <div class="card-body">
+            <ul style="list-style: none; padding: 0;">
+              <li style="padding: 8px 0; border-bottom: 1px solid var(--color-border);">
+                <span class="badge badge-success">완료</span> 
+                해양 계산기 최적화
+              </li>
+              <li style="padding: 8px 0; border-bottom: 1px solid var(--color-border);">
+                <span class="badge badge-success">완료</span> 
+                디자인 개선
+              </li>
+              <li style="padding: 8px 0; border-bottom: 1px solid var(--color-border);">
+                <span class="badge badge-success">완료</span> 
+                중복코드 삭제
+              </li>
+            </ul>
+          </div>
         </div>
 
+        <div class="card">
+          <div class="card-header">
+            <h3 class="card-title">계획</h3>
+          </div>
+          <div class="card-body">
+            <ul style="list-style: none; padding: 0;">
+              <li style="padding: 8px 0; border-bottom: 1px solid var(--color-border);">
+                <span class="badge badge-warning">예정</span> 
+                재배 구현
+              </li>
+              <li style="padding: 8px 0; border-bottom: 1px solid var(--color-border);">
+                <span class="badge badge-warning">예정</span> 
+                정보 창
+              </li>
+              <li style="padding: 8px 0;">
+                <span class="badge badge-warning">예정</span> 
+                홈에 내용 추가
+              </li>
+            </ul>
+          </div>
+        </div>
+
+      </div>
+
     </section>
-    </main>
+  </main>
 
   <footer class="footer">
-    © 몽실몽실
+    © 인절미
   </footer>
 
   <script src="js/script.js"></script>

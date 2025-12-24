@@ -5,15 +5,15 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>🍎계산기 - 채광</title>
 
-  <!-- 공통 스타일 -->
-  <link rel="stylesheet" href="css/style.css" />
-
-  <!-- 채광 전용 스타일 (나중에 작성) -->
-  <!-- <link rel="stylesheet" href="mining.css" /> -->
+  <!-- CSS 파일 로드 순서가 중요합니다 -->
+  <link rel="stylesheet" href="css/variables.css" />
+  <link rel="stylesheet" href="css/base.css" />
+  <link rel="stylesheet" href="css/layout.css" />
+  <link rel="stylesheet" href="css/components.css" />
 </head>
 <body>
 
-  <!-- ===== 상단 헤더 (공통) ===== -->
+  <!-- ===== 상단 헤더 ===== -->
   <header class="top-header">
     <div class="header-inner">
 
@@ -42,43 +42,70 @@
   <main class="page">
     <section class="content-area">
 
-      <!-- 정보 -->
+      <!-- 정보 탭 -->
       <div id="tab-info" class="tab-content">
-        <h2 class="content-title">채광 - 정보</h2>
-        <p>
-          채광 시스템 설명, 드랍 아이템, 기본 효율 정보가 들어갈 영역
-        </p>
+        <h2 class="content-title">📋 채광 정보</h2>
+        
+        <div class="card">
+          <div class="card-header">
+            <h3 class="card-title">채광 시스템 설명</h3>
+          </div>
+          <div class="card-body">
+            <p>채광 시스템 설명, 드랍 아이템, 기본 효율 정보가 들어갈 영역입니다.</p>
+            <p style="margin-top: 12px; color: var(--color-text-muted);">
+              🚧 이 페이지는 현재 개발 중입니다.
+            </p>
+          </div>
+        </div>
+
+        <div class="alert alert-info" style="margin-top: 20px;">
+          <strong>💡 개발 예정</strong><br>
+          채광 계산기 기능이 곧 추가될 예정입니다.
+        </div>
       </div>
 
-      <!-- 스태미나 -->
+      <!-- 스태미나 탭 -->
       <div id="tab-stamina" class="tab-content" style="display:none;">
-        <h2 class="content-title">채광 - 스태미나</h2>
-        <p>
-          스태미나 소모량, 회복, 하루 수익 계산기 영역
-        </p>
+        <h2 class="content-title">⚡ 스태미나 계산</h2>
+        
+        <div class="card">
+          <div class="card-header">
+            <h3 class="card-title">스태미나 관리</h3>
+          </div>
+          <div class="card-body">
+            <p>스태미나 소모량, 회복, 하루 수익 계산기 영역입니다.</p>
+            <p style="margin-top: 12px; color: var(--color-text-muted);">
+              🚧 이 기능은 현재 개발 중입니다.
+            </p>
+          </div>
+        </div>
       </div>
 
-      <!-- 제작 -->
+      <!-- 제작 탭 -->
       <div id="tab-craft" class="tab-content" style="display:none;">
-        <h2 class="content-title">채광 - 제작</h2>
-        <p>
-          제작 재료 소모 대비 효율 계산 영역
-        </p>
+        <h2 class="content-title">🔨 제작 효율</h2>
+        
+        <div class="card">
+          <div class="card-header">
+            <h3 class="card-title">제작 계산기</h3>
+          </div>
+          <div class="card-body">
+            <p>제작 재료 소모 대비 효율 계산 영역입니다.</p>
+            <p style="margin-top: 12px; color: var(--color-text-muted);">
+              🚧 이 기능은 현재 개발 중입니다.
+            </p>
+          </div>
+        </div>
       </div>
 
     </section>
   </main>
 
   <!-- ===== 푸터 ===== -->
-  <footer class="footer">
-    © 몽실몽실
-  </footer>
+  <footer class="footer">© 1x0x7</footer>
 
   <!-- 공통 스크립트 -->
   <script src="js/script.js"></script>
-
-  <!-- 채광 전용 스크립트 -->
-  <!-- <script src="mining.js"></script> -->
 
 </body>
 </html>
