@@ -1,136 +1,13 @@
-/* 2단 그리드 레이아웃 */
-.info-grid {
-  display: grid;
-  grid-template-columns: 350px 1fr;
-  gap: 20px;
-  align-items: start;
-}
-
-/* 왼쪽 영역 */
-.info-left {
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-  position: sticky;
-  top: 20px;
-}
-
-/* 오른쪽 영역 */
-.info-right {
-  min-height: 500px;
-}
-
-/* 컴팩트 카드 */
-.compact-card {
-  margin-bottom: 0;
-}
-
-.compact-card .card-header {
-  padding: 12px 16px;
-}
-
-.compact-card .card-title {
-  font-size: 15px;
-}
-
-.compact-card .card-body {
-  padding: 12px 16px;
-}
-
-/* 조합법 카드 헤더 with 토글 버튼 */
+/* 조합법 카드 헤더 */
 .card-header {
   position: relative;
 }
 
-.toggle-materials-btn {
-  position: absolute;
-  right: 16px;
-  top: 50%;
-  transform: translateY(-50%);
-  padding: 6px 12px;
-  background-color: var(--color-bg-secondary, #f8f9fa);
-  border: 1px solid var(--color-border, #e0e0e0);
-  border-radius: 4px;
-  font-size: 12px;
-  color: var(--color-text-secondary, #666);
-  cursor: pointer;
-  transition: all 0.2s;
-  display: flex;
-  align-items: center;
-  gap: 6px;
-}
-
-.toggle-materials-btn:hover {
-  background-color: var(--color-bg-hover, #f0f2f5);
-  border-color: var(--color-primary, #4a90e2);
-  color: var(--color-primary, #4a90e2);
-}
-
-.toggle-icon {
-  font-size: 10px;
-  transition: transform 0.2s;
-}
-
-.toggle-icon.open {
-  transform: rotate(180deg);
-}
-
-/* 기본 재료 가격 토글 영역 */
-.basic-materials-toggle {
-  padding: 12px 16px;
-  background-color: var(--color-bg-secondary, #f8f9fa);
-  border-top: 1px solid var(--color-border, #e0e0e0);
-  border-bottom: 1px solid var(--color-border, #e0e0e0);
-}
-
-.basic-materials-inline {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 16px;
-  font-size: 13px;
-}
-
-.material-inline {
-  color: var(--color-text-secondary, #666);
-}
-
-.material-inline strong {
-  color: var(--color-primary, #4a90e2);
+/* 가격 표시 스타일 - 파란색 */
+.price-value {
+  color: var(--color-primary, #2563eb);
   font-weight: 600;
-  margin-left: 4px;
-}
-
-/* 기본 재료 - 컴팩트 버전 */
-.basic-materials-compact {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-}
-
-.material-item-compact {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 8px 12px;
-  background-color: var(--color-bg-secondary, #f8f9fa);
-  border-radius: 4px;
-  font-size: 13px;
-  transition: all 0.2s;
-}
-
-.material-item-compact:hover {
-  background-color: var(--color-bg-hover, #f0f2f5);
-  transform: translateX(2px);
-}
-
-.material-item-compact .material-name {
-  font-weight: 500;
-  color: var(--color-text-primary, #333);
-}
-
-.material-item-compact .material-price {
-  font-weight: 600;
-  color: var(--color-primary, #4a90e2);
+  white-space: nowrap;
 }
 
 /* 조합법 내부 탭 */
@@ -242,7 +119,7 @@
   background: #999;
 }
 
-/* 요리 조합법 테이블 - 컴팩트 */
+/* 조합법 테이블 - 컴팩트 */
 .recipe-table-compact {
   width: 100%;
   border-collapse: collapse;
@@ -271,22 +148,12 @@
   transition: background-color 0.15s;
 }
 
+.recipe-table-compact tbody tr:hover {
+  background-color: var(--color-bg-hover, #f8f9fa);
+}
+
 .recipe-table-compact tbody tr:last-child {
   border-bottom: none;
-}
-
-/* 테이블 내 요리 이름 + 아이콘 */
-.recipe-table-compact td.recipe-name {
-  display: flex;
-  align-items: center; /* 세로 중앙 정렬 */
-  gap: 6px; /* 이미지와 텍스트 사이 간격 */
-}
-
-.recipe-table-compact td.recipe-name img {
-  width: 20px;    /* 아이콘 크기 */
-  height: 20px;
-  object-fit: contain;
-  display: inline-block;
 }
 
 .recipe-table-compact td {
@@ -307,15 +174,10 @@
   color: var(--color-text-secondary, #666);
 }
 
-.recipe-table-compact .price-low {
-  color: var(--color-success, #28a745);
-  font-weight: 500;
-  white-space: nowrap;
-}
-
-.recipe-table-compact .price-high {
-  color: var(--color-danger, #dc3545);
-  font-weight: 500;
+/* 가격 스타일 - 파란색 (테이블 내부) */
+.recipe-table-compact .price-value {
+  color: var(--color-primary, #2563eb) !important;
+  font-weight: 600;
   white-space: nowrap;
 }
 
@@ -389,22 +251,7 @@
 }
 
 /* 반응형 디자인 */
-@media (max-width: 1024px) {
-  .info-grid {
-    grid-template-columns: 300px 1fr;
-    gap: 16px;
-  }
-}
-
 @media (max-width: 768px) {
-  .info-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .info-left {
-    position: static;
-  }
-
   .recipe-tab {
     font-size: 13px;
     padding: 10px 12px;
@@ -433,19 +280,6 @@
   .processing-table-compact th,
   .processing-table-compact td {
     padding: 8px 10px;
-  }
-  
-  .toggle-materials-btn {
-    position: static;
-    transform: none;
-    margin-top: 8px;
-    width: 100%;
-    justify-content: center;
-  }
-  
-  .basic-materials-inline {
-    flex-direction: column;
-    gap: 8px;
   }
 }
 

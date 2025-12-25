@@ -6,7 +6,6 @@ import { setupTabs, setupSetSwitcher, setupInputSetDisplay } from './ocean-ui.js
 import * as Calculator1Star from './ocean-calculator-1star.js';
 import * as Calculator2Star from './ocean-calculator-2star.js';
 import * as Calculator3Star from './ocean-calculator-3star.js';
-import * as Stamina from './ocean-stamina.js';
 import { getElement } from './ocean-utils.js';
 
 /**
@@ -20,7 +19,6 @@ function init() {
     Calculator1Star.init();
     Calculator2Star.init();
     Calculator3Star.init();
-    Stamina.init();
 
     // 세트 스위처 설정
     setupSetSwitcher(() => {

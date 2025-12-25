@@ -261,6 +261,7 @@ function updateResult(result) {
         { name: '농어', value: fishData.bass }
     ]);
 
+    document.getElementById('result-card-1').style.display = 'block';
     lastResult = result;
 }
 

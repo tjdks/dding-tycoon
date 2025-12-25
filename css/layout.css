@@ -104,7 +104,7 @@
   display: none;
 }
 
-.sub-header-inner {
+.sub-header-inner { 
   -ms-overflow-style: none;
   scrollbar-width: none;
 }

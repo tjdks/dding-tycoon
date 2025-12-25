@@ -1,0 +1,239 @@
+/* 정보 탭 - 전문가 세팅 스타일 */
+
+/* 콘텐츠 타이틀 */
+.content-title {
+  margin-bottom: 20px;
+}
+
+/* 2단 그리드 레이아웃 - 재배와 완전 동일 */
+.info-grid {
+  display: grid;
+  grid-template-columns: 350px 1fr;
+  gap: 20px;
+  align-items: start;
+}
+
+/* 왼쪽 영역 */
+.info-left {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  position: sticky;
+  top: 20px;
+}
+
+/* 오른쪽 영역 */
+.info-right {
+  min-height: 500px;
+}
+
+/* 컴팩트 카드 */
+.compact-card {
+  margin-bottom: 0;
+}
+
+.compact-card .card-header {
+  padding: 12px 16px;
+}
+
+.compact-card .card-title {
+  font-size: 16px;
+}
+
+.compact-card .card-body {
+  padding: 12px 16px;
+}
+
+/* 설정 행 */
+.setting-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 0;
+  border-bottom: 1px solid var(--color-border-light, #f0f0f0);
+}
+
+.setting-row:last-of-type {
+  border-bottom: none;
+}
+
+/* 낚싯대 스펙 강조 */
+.hoe-spec-row {
+  background-color: rgba(74, 144, 226, 0.05);
+  padding: 10px 12px;
+  margin: -8px -12px 8px -12px;
+  border-radius: 6px;
+  border-bottom: none;
+}
+
+.hoe-spec-label {
+  font-weight: 700;
+  font-size: 14px;
+  color: var(--color-primary, #4a90e2);
+}
+
+/* 설정 레이블 */
+.setting-label {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+  color: var(--color-text-primary, #333);
+  flex: 1;
+}
+
+/* 스킬 이름 */
+.skill-name {
+  font-weight: 600;
+}
+
+.skill-name.gift {
+  color: #915ce0;
+}
+
+.skill-name.harvest {
+  color: #31a552;
+}
+
+.skill-name.pot {
+  color: #369de7;
+}
+
+.skill-name.money {
+  color: #edbc40;
+}
+
+.skill-name.king {
+  color: #915ce0;
+}
+
+.skill-name.seed-bonus {
+  color: #31a552;
+}
+
+.skill-name.fire {
+  color: #e9525b;
+}
+
+/* 인라인 정보 버튼 */
+.info-btn-inline {
+  padding: 2px 6px;
+  background: transparent;
+  border: none;
+  color: var(--color-text-muted, #999);
+  font-size: 12px;
+  cursor: pointer;
+  transition: color 0.2s;
+  border-radius: 50%;
+  line-height: 1;
+}
+
+.info-btn-inline:hover {
+  color: var(--color-primary, #4a90e2);
+}
+
+/* 설정 입력 필드 */
+.setting-input {
+  min-width: 80px;
+  max-width: 80px;
+  padding: 6px 10px;
+  border: 1px solid var(--color-border, #e0e0e0);
+  border-radius: 4px;
+  font-size: 12px;
+  background-color: white;
+  text-align: center;
+  transition: all 0.2s;
+}
+
+.setting-input:focus {
+  outline: none;
+  border-color: var(--color-primary, #4a90e2);
+  box-shadow: 0 0 0 2px rgba(74, 144, 226, 0.1);
+}
+
+.setting-input::placeholder {
+  color: var(--color-text-muted, #999);
+  font-size: 11px;
+}
+
+/* 전문가 설명 */
+.expert-desc {
+  padding: 10px 12px;
+  margin: 6px 0 8px 0;
+  background-color: rgba(74, 144, 226, 0.05);
+  border-left: 3px solid var(--color-primary, #4a90e2);
+  border-radius: 4px;
+  font-size: 11px;
+  color: var(--color-text-secondary, #666);
+  line-height: 1.6;
+}
+
+.expert-desc strong {
+  color: var(--color-text-primary, #333);
+  font-weight: 600;
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    max-height: 0;
+    padding-top: 0;
+    padding-bottom: 0;
+    margin-top: 0;
+    margin-bottom: 0;
+  }
+  to {
+    opacity: 1;
+    max-height: 300px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    margin-top: 6px;
+    margin-bottom: 8px;
+  }
+}
+
+/* 반응형 */
+@media (max-width: 1024px) {
+  .info-grid {
+    grid-template-columns: 300px 1fr;
+    gap: 16px;
+  }
+}
+
+@media (max-width: 768px) {
+  .info-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .info-left {
+    position: static;
+  }
+
+  .setting-row {
+    padding: 6px 0;
+  }
+
+  .setting-label {
+    font-size: 12px;
+  }
+
+  .setting-input {
+    min-width: 70px;
+    max-width: 70px;
+    font-size: 11px;
+    padding: 5px 8px;
+  }
+
+  .expert-desc {
+    font-size: 10px;
+  }
+  
+  .hoe-spec-row {
+    padding: 8px 10px;
+    margin: -6px -10px 6px -10px;
+  }
+  
+  .hoe-spec-label {
+    font-size: 13px;
+  }
+}

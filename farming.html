@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>🍎계산기 - 재배</title>
 
-  <!-- CSS 파일 로드 순서가 중요합니다 -->
+  <!-- CSS 파일 -->
   <link rel="stylesheet" href="css/variables.css" />
   <link rel="stylesheet" href="css/base.css" />
   <link rel="stylesheet" href="css/layout.css" />
@@ -16,60 +16,52 @@
 </head>
 <body>
 
-  <!-- ===== 상단 헤더 ===== -->
+  <!-- ===== 헤더 ===== -->
   <header class="top-header">
     <div class="header-inner">
-
       <div class="logo">계산기</div>
-
       <nav class="main-nav">
         <a href="index.html">홈</a>
         <a href="mining.html">채광</a>
         <a href="farming.html" class="active">재배</a>
         <a href="ocean.html">해양</a>
       </nav>
-
     </div>
   </header>
 
-  <!-- ===== 재배 하위 탭 ===== -->
+  <!-- ===== 하위 탭 ===== -->
   <div class="sub-header">
     <div class="sub-header-inner">
       <a href="#" class="active" data-target="tab-info">정보</a>
       <a href="#" data-target="tab-stamina">스태미나</a>
-      <a href="#" data-target="tab-farm">재배</a>
+      <a href="#" data-target="tab-farm">채집/수확</a>
       <a href="#" data-target="tab-cook">요리</a>
     </div>
   </div>
 
-  <!-- ===== 메인 콘텐츠 ===== -->
+  <!-- ===== 메인 ===== -->
   <main class="page">
     <section class="content-area">
 
       <!-- 정보 탭 -->
       <div id="tab-info" class="tab-content" style="display:block;">
         <h2 class="content-title">정보</h2>
-        
-        <!-- 2단 레이아웃 -->
         <div class="info-grid">
-          
-          <!-- 왼쪽: 입력 영역 -->
+
+          <!-- 왼쪽: 전문가 설정 -->
           <div class="info-left">
-            
-            <!-- 현재 전문가 세팅 -->
             <div class="card compact-card">
               <div class="card-header">
                 <h3 class="card-title">현재 전문가 세팅</h3>
               </div>
               <div class="card-body">
-                
-                <!-- 괭이 스펙 -->
-                <div class="setting-row hoe-spec-row">
-                  <label class="setting-label hoe-spec-label">괭이 스펙</label>
-                  <input type="number" id="hoe-level" class="setting-input" placeholder="예) 10" min="1" max="15">
+
+                <!-- 전문가 입력 -->
+                <div class="setting-row">
+                  <label class="setting-label">괭이 스펙</label>
+                  <input type="number" id="hoe-level" class="setting-input" placeholder="예: 10" min="1" max="15">
                 </div>
 
-                <!-- 자연이 주는 선물 -->
                 <div class="setting-row">
                   <label class="setting-label">
                     <span class="skill-name gift">자연이 주는 선물</span>
@@ -77,140 +69,68 @@
                   </label>
                   <input type="number" id="expert-gift" class="setting-input" placeholder="LV" min="0" max="10">
                 </div>
-                <div id="expert-gift-info" class="expert-desc" style="display:none;">
-                  <strong>LV 1</strong> – 채집 시 1% 확률로 씨앗 1개 추가 드롭<br>
-                  <strong>LV 2</strong> – 채집 시 2% 확률로 씨앗 1개 추가 드롭<br>
-                  <strong>LV 3</strong> – 채집 시 3% 확률로 씨앗 1개 추가 드롭<br>
-                  <strong>LV 4</strong> – 채집 시 4% 확률로 씨앗 1개 추가 드롭<br>
-                  <strong>LV 5</strong> – 채집 시 5% 확률로 씨앗 2개 추가 드롭<br>
-                  <strong>LV 6</strong> – 채집 시 6% 확률로 씨앗 2개 추가 드롭<br>
-                  <strong>LV 7</strong> – 채집 시 7% 확률로 씨앗 3개 추가 드롭<br>
-                  <strong>LV 8</strong> – 채집 시 8% 확률로 씨앗 4개 추가 드롭<br>
-                  <strong>LV 9</strong> – 채집 시 9% 확률로 씨앗 5개 추가 드롭<br>
-                  <strong>LV 10</strong> – 채집 시 10% 확률로 씨앗 8개 추가 드롭
-                </div>
+                <div id="expert-gift-info" class="expert-desc" style="display:none;"></div>
 
-                <!-- 오늘도 풍년이다 -->
                 <div class="setting-row">
                   <label class="setting-label">
                     <span class="skill-name harvest">오늘도 풍년이다!</span>
                     <button class="info-btn-inline" tabindex="-1" onclick="toggleExpertInfo('harvest')">ⓘ</button>
                   </label>
-                  <input type="number" id="expert-harvest" class="setting-input" placeholder="LV" min="0" max="7" >
+                  <input type="number" id="expert-harvest" class="setting-input" placeholder="LV" min="0" max="7">
                 </div>
-                <div id="expert-harvest-info" class="expert-desc" style="display:none;">
-                  <strong>LV 1</strong> – 수확 시 1% 확률로 농작물 1개 추가 드롭<br>
-                  <strong>LV 2</strong> – 수확 시 2% 확률로 농작물 1개 추가 드롭<br>
-                  <strong>LV 3</strong> – 수확 시 3% 확률로 농작물 1개 추가 드롭<br>
-                  <strong>LV 4</strong> – 수확 시 4% 확률로 농작물 1개 추가 드롭<br>
-                  <strong>LV 5</strong> – 수확 시 5% 확률로 농작물 2개 추가 드롭<br>
-                  <strong>LV 6</strong> – 수확 시 7% 확률로 농작물 2개 추가 드롭<br>
-                  <strong>LV 7</strong> – 수확 시 10% 확률로 농작물 3개 추가 드롭
-                </div>
+                <div id="expert-harvest-info" class="expert-desc" style="display:none;"></div>
 
-                <!-- 한 솥 가득 -->
                 <div class="setting-row">
                   <label class="setting-label">
                     <span class="skill-name pot">한 솥 가득</span>
                     <button class="info-btn-inline" tabindex="-1" onclick="toggleExpertInfo('pot')">ⓘ</button>
                   </label>
-                  <input type="number" id="expert-pot" class="setting-input" placeholder="LV" min="0" max="5" >
+                  <input type="number" id="expert-pot" class="setting-input" placeholder="LV" min="0" max="5">
                 </div>
-                <div id="expert-pot-info" class="expert-desc" style="display:none;">
-                  <strong>LV 1</strong> – 음식 3세트 이상 판매 시 1% 보너스<br>
-                  <strong>LV 2</strong> – 음식 3세트 이상 판매 시 2% 보너스<br>
-                  <strong>LV 3</strong> – 음식 3세트 이상 판매 시 3% 보너스<br>
-                  <strong>LV 4</strong> – 음식 3세트 이상 판매 시 4% 보너스<br>
-                  <strong>LV 5</strong> – 음식 3세트 이상 판매 시 7% 보너스
-                </div>
+                <div id="expert-pot-info" class="expert-desc" style="display:none;"></div>
 
-                <!-- 돈 좀 벌어볼까 -->
                 <div class="setting-row">
                   <label class="setting-label">
                     <span class="skill-name money">돈 좀 벌어볼까?</span>
                     <button class="info-btn-inline" tabindex="-1" onclick="toggleExpertInfo('money')">ⓘ</button>
                   </label>
-                  <input type="number" id="expert-money" class="setting-input" placeholder="LV" min="0" max="10" >
+                  <input type="number" id="expert-money" class="setting-input" placeholder="LV" min="0" max="10">
                 </div>
-                <div id="expert-money-info" class="expert-desc" style="display:none;">
-                  <strong>LV 1</strong> – 요리 판매가 +1%<br>
-                  <strong>LV 2</strong> – 요리 판매가 +2%<br>
-                  <strong>LV 3</strong> – 요리 판매가 +3%<br>
-                  <strong>LV 4</strong> – 요리 판매가 +4%<br>
-                  <strong>LV 5</strong> – 요리 판매가 +5%<br>
-                  <strong>LV 6</strong> – 요리 판매가 +6%<br>
-                  <strong>LV 7</strong> – 요리 판매가 +10%<br>
-                  <strong>LV 8</strong> – 요리 판매가 +15%<br>
-                  <strong>LV 9</strong> – 요리 판매가 +30%<br>
-                  <strong>LV 10</strong> – 요리 판매가 +50%
-                </div>
+                <div id="expert-money-info" class="expert-desc" style="display:none;"></div>
 
-                <!-- 왕 크니까 왕 좋아 -->
                 <div class="setting-row">
                   <label class="setting-label">
                     <span class="skill-name king">왕 크니까 왕 좋아</span>
                     <button class="info-btn-inline" tabindex="-1" onclick="toggleExpertInfo('king')">ⓘ</button>
                   </label>
-                  <input type="number" id="expert-king" class="setting-input" placeholder="LV" min="0" max="4" >
+                  <input type="number" id="expert-king" class="setting-input" placeholder="LV" min="0" max="4">
                 </div>
-                <div id="expert-king-info" class="expert-desc" style="display:none;">
-                  <strong>LV 1</strong> – 수확 시 대왕 작물 확률 0.5%<br>
-                  <strong>LV 2</strong> – 수확 시 대왕 작물 확률 1%<br>
-                  <strong>LV 3</strong> – 수확 시 대왕 작물 확률 3%<br>
-                  <strong>LV 4</strong> – 수확 시 대왕 작물 확률 5%
-                </div>
+                <div id="expert-king-info" class="expert-desc" style="display:none;"></div>
 
-                <!-- 씨앗은 덤이야 -->
                 <div class="setting-row">
                   <label class="setting-label">
                     <span class="skill-name seed-bonus">씨앗은 덤이야</span>
                     <button class="info-btn-inline" tabindex="-1" onclick="toggleExpertInfo('seed-bonus')">ⓘ</button>
                   </label>
-                  <input type="number" id="expert-seed-bonus" class="setting-input" placeholder="LV" min="0" max="10" >
+                  <input type="number" id="expert-seed-bonus" class="setting-input" placeholder="LV" min="0" max="10">
                 </div>
-                <div id="expert-seed-bonus-info" class="expert-desc" style="display:none;">
-                  <strong>LV 1</strong> – 수확 시 1% 확률로 씨앗 드롭<br>
-                  <strong>LV 2</strong> – 수확 시 2% 확률로 씨앗 드롭<br>
-                  <strong>LV 3</strong> – 수확 시 3% 확률로 씨앗 드롭<br>
-                  <strong>LV 4</strong> – 수확 시 4% 확률로 씨앗 드롭<br>
-                  <strong>LV 5</strong> – 수확 시 5% 확률로 씨앗 드롭<br>
-                  <strong>LV 6</strong> – 수확 시 6% 확률로 씨앗 드롭<br>
-                  <strong>LV 7</strong> – 수확 시 7% 확률로 씨앗 드롭<br>
-                  <strong>LV 8</strong> – 수확 시 10% 확률로 씨앗 드롭<br>
-                  <strong>LV 9</strong> – 수확 시 20% 확률로 씨앗 드롭<br>
-                  <strong>LV 10</strong> – 수확 시 30% 확률로 씨앗 드롭
-                </div>
+                <div id="expert-seed-bonus-info" class="expert-desc" style="display:none;"></div>
 
-                <!-- 불붙은 괭이 -->
                 <div class="setting-row">
                   <label class="setting-label">
                     <span class="skill-name fire">불붙은 괭이</span>
                     <button class="info-btn-inline" tabindex="-1" onclick="toggleExpertInfo('fire')">ⓘ</button>
                   </label>
-                  <input type="number" id="expert-fire" class="setting-input" placeholder="LV" min="0" max="10" >
+                  <input type="number" id="expert-fire" class="setting-input" placeholder="LV" min="0" max="10">
                 </div>
-                <div id="expert-fire-info" class="expert-desc" style="display:none;">
-                  <strong>LV 1</strong> – 채집 시 1% 확률로 베이스 1개 드롭<br>
-                  <strong>LV 2</strong> – 채집 시 2% 확률로 베이스 1개 드롭<br>
-                  <strong>LV 3</strong> – 채집 시 3% 확률로 베이스 2개 드롭<br>
-                  <strong>LV 4</strong> – 채집 시 4% 확률로 베이스 2개 드롭<br>
-                  <strong>LV 5</strong> – 채집 시 5% 확률로 베이스 2개 드롭<br>
-                  <strong>LV 6</strong> – 채집 시 6% 확률로 베이스 3개 드롭<br>
-                  <strong>LV 7</strong> – 채집 시 7% 확률로 베이스 3개 드롭<br>
-                  <strong>LV 8</strong> – 채집 시 8% 확률로 베이스 5개 드롭<br>
-                  <strong>LV 9</strong> – 채집 시 9% 확률로 베이스 5개 드롭<br>
-                  <strong>LV 10</strong> – 채집 시 15% 확률로 베이스 7개 드롭
-                </div>
+                <div id="expert-fire-info" class="expert-desc" style="display:none;"></div>
 
               </div>
             </div>
-
           </div>
 
-          <!-- 오른쪽: 조합법 영역 -->
+          <!-- 오른쪽: 요리/가공 조합 -->
           <div class="info-right">
-            
-            <!-- 조합법 탭 -->
             <div class="card">
               <div class="card-header">
                 <h3 class="card-title">📖 조합법</h3>
@@ -219,8 +139,6 @@
                   <span class="toggle-icon">▼</span>
                 </button>
               </div>
-              
-              <!-- 기본 재료 가격 (접힌 상태) -->
               <div class="basic-materials-toggle" id="basic-materials-section" style="display:none;">
                 <div class="basic-materials-inline">
                   <span class="material-inline">소금 <strong>2G</strong></span>
@@ -229,16 +147,13 @@
                   <span class="material-inline">오일 <strong>4G</strong></span>
                 </div>
               </div>
-              
-              <div class="card-body" style="padding: 0;">
-                
-                <!-- 조합법 내부 탭 -->
+
+              <div class="card-body" style="padding:0;">
                 <div class="recipe-tabs">
                   <button class="recipe-tab active" data-recipe-tab="cooking">🍳 요리</button>
                   <button class="recipe-tab" data-recipe-tab="processing">🔧 가공</button>
                 </div>
 
-                <!-- 요리 조합법 -->
                 <div id="cooking-recipes" class="recipe-content active">
                   <div class="recipe-content-inner">
                     <div class="table-controls-compact">
@@ -259,15 +174,12 @@
                             <th>최고가</th>
                           </tr>
                         </thead>
-                        <tbody id="recipe-tbody">
-                          <!-- JS로 동적 생성 -->
-                        </tbody>
+                        <tbody id="recipe-tbody"></tbody>
                       </table>
                     </div>
                   </div>
                 </div>
 
-                <!-- 가공 조합법 -->
                 <div id="processing-recipes" class="recipe-content">
                   <div class="recipe-content-inner">
                     <div class="table-wrapper-compact">
@@ -278,9 +190,7 @@
                             <th>재료</th>
                           </tr>
                         </thead>
-                        <tbody id="processing-tbody">
-                          <!-- JS로 동적 생성 -->
-                        </tbody>
+                        <tbody id="processing-tbody"></tbody>
                       </table>
                     </div>
                   </div>
@@ -288,7 +198,6 @@
 
               </div>
             </div>
-
           </div>
 
         </div>
@@ -297,12 +206,9 @@
       <!-- 스태미나 탭 -->
       <div id="tab-stamina" class="tab-content" style="display:none;">
         <h2 class="content-title">스태미나 계산</h2>
-        
         <div class="stamina-container">
           <div class="card">
             <div class="card-body">
-              
-              <!-- 입력 영역 -->
               <div id="stamina-inputs-container" class="stamina-inputs-container">
                 <div class="stamina-input-row" id="input-row-1">
                   <div class="stamina-input-group">
@@ -310,7 +216,6 @@
                       스태미나
                       <input type="number" id="stamina-input-1" class="stamina-input" placeholder="3300" min="0" step="7">
                     </label>
-                    
                     <label class="stamina-label">
                       작물
                       <select id="crop-select-1" class="stamina-select">
@@ -322,46 +227,36 @@
                   </div>
                 </div>
               </div>
-              
-              <!-- 전문가 정보 -->
+
               <div class="expert-info-text">
                 <span id="farming-expert-info">괭이 0강, 자연이 주는 선물 LV0, 불붙은 괭이 LV0</span>
               </div>
-              
-              <!-- 버튼 -->
+
               <div class="btn-actions">
                 <button class="btn-add" onclick="addStaminaInput()">+ 추가</button>
                 <button class="btn-calculate" onclick="calculateStamina()">계산하기</button>
               </div>
-              
-              <!-- 결과 영역 -->
+
               <div id="stamina-result-card" style="display:none;">
                 <h4 class="result-section-title">🌱 획득 정보</h4>
-                <div id="result-body">
-                  <!-- 결과가 여기 표시됨 -->
-                </div>
+                <div id="result-body"></div>
               </div>
-              
+
             </div>
           </div>
         </div>
       </div>
+
     </section>
   </main>
 
-  <!-- ===== 푸터 ===== -->
   <footer class="footer">© 1x0x7</footer>
-  
-  <!-- 공통 스크립트 -->
-  <script src="js/script.js"></script>
-  <!-- 정보 탭 입력 스크립트 -->
-  <script src="js/farming-info.js"></script>
-  <!-- 요리 조합법 스크립트 -->
-  <script src="js/farming-recipes.js"></script>
-  <!-- 스태미나 계산 스크립트 -->
-  <script src="js/farming-stamina.js"></script>
-  
 
+  <!-- JS -->
+  <script src="js/script.js"></script>
+  <script src="js/farming-info.js"></script>
+  <script src="js/farming-recipes.js"></script>
+  <script src="js/farming-stamina.js"></script>
 
 </body>
 </html>
