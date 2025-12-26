@@ -1,0 +1,33 @@
+/* =========================
+   재배 전용 스타일
+   - 스킬 색상만 정의
+========================= */
+
+/* 재배 스킬 색상 */
+.skill-name.gift {
+  color: #31a552;
+}
+
+.skill-name.harvest {
+  color: #edbc40;
+}
+
+.skill-name.pot {
+  color: #edbc40;
+}
+
+.skill-name.money {
+  color: #edbe46;
+}
+
+.skill-name.king {
+  color: #edbc40;
+}
+
+.skill-name.seed-bonus {
+  color: #31a552;
+}
+
+.skill-name.fire {
+  color: #e9525b;
+}

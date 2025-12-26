@@ -5,18 +5,23 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>🍎계산기 - 재배</title>
 
-  <!-- CSS 파일 -->
+  <!-- CSS 파일 로드 순서가 중요합니다 -->
   <link rel="stylesheet" href="css/variables.css" />
   <link rel="stylesheet" href="css/base.css" />
   <link rel="stylesheet" href="css/layout.css" />
   <link rel="stylesheet" href="css/components.css" />
-  <link rel="stylesheet" href="css/farming-info.css" />
-  <link rel="stylesheet" href="css/farming-recipes.css" />
-  <link rel="stylesheet" href="css/farming-stamina.css" />
+  
+  <!-- 공통 스타일 -->
+  <link rel="stylesheet" href="css/common-info.css" />
+  <link rel="stylesheet" href="css/common-recipes.css" />
+  <link rel="stylesheet" href="css/common-stamina.css" />
+  
+  <!-- 재배 전용 스타일 -->
+  <link rel="stylesheet" href="css/farming-custom.css" />
 </head>
-<body>
 
-  <!-- ===== 헤더 ===== -->
+<body>
+  <!-- ===== 상단 헤더 ===== -->
   <header class="top-header">
     <div class="header-inner">
       <div class="logo">계산기</div>
@@ -29,7 +34,7 @@
     </div>
   </header>
 
-  <!-- ===== 하위 탭 ===== -->
+  <!-- ===== 재배 하위 탭 ===== -->
   <div class="sub-header">
     <div class="sub-header-inner">
       <a href="#" class="active" data-target="tab-info">정보</a>
@@ -39,29 +44,34 @@
     </div>
   </div>
 
-  <!-- ===== 메인 ===== -->
+  <!-- ===== 메인 콘텐츠 ===== -->
   <main class="page">
     <section class="content-area">
 
       <!-- 정보 탭 -->
       <div id="tab-info" class="tab-content" style="display:block;">
         <h2 class="content-title">정보</h2>
+        
+        <!-- 2단 레이아웃 -->
         <div class="info-grid">
 
-          <!-- 왼쪽: 전문가 설정 -->
+          <!-- 왼쪽: 입력 영역 -->
           <div class="info-left">
+            
+            <!-- 현재 전문가 세팅 -->
             <div class="card compact-card">
               <div class="card-header">
                 <h3 class="card-title">현재 전문가 세팅</h3>
               </div>
               <div class="card-body">
 
-                <!-- 전문가 입력 -->
-                <div class="setting-row">
-                  <label class="setting-label">괭이 스펙</label>
-                  <input type="number" id="hoe-level" class="setting-input" placeholder="예: 10" min="1" max="15">
+                <!-- 괭이 스펙 -->
+                <div class="setting-row tool-spec-row">
+                  <label class="setting-label tool-spec-label">괭이 스펙</label>
+                  <input type="number" id="hoe-level" class="setting-input" min="1" max="15">
                 </div>
 
+                <!-- 자연이 주는 선물 -->
                 <div class="setting-row">
                   <label class="setting-label">
                     <span class="skill-name gift">자연이 주는 선물</span>
@@ -71,6 +81,7 @@
                 </div>
                 <div id="expert-gift-info" class="expert-desc" style="display:none;"></div>
 
+                <!-- 오늘도 풍년이다! -->
                 <div class="setting-row">
                   <label class="setting-label">
                     <span class="skill-name harvest">오늘도 풍년이다!</span>
@@ -80,6 +91,7 @@
                 </div>
                 <div id="expert-harvest-info" class="expert-desc" style="display:none;"></div>
 
+                <!-- 한 솥 가득 -->
                 <div class="setting-row">
                   <label class="setting-label">
                     <span class="skill-name pot">한 솥 가득</span>
@@ -89,6 +101,7 @@
                 </div>
                 <div id="expert-pot-info" class="expert-desc" style="display:none;"></div>
 
+                <!-- 돈 좀 벌어볼까? -->
                 <div class="setting-row">
                   <label class="setting-label">
                     <span class="skill-name money">돈 좀 벌어볼까?</span>
@@ -98,6 +111,7 @@
                 </div>
                 <div id="expert-money-info" class="expert-desc" style="display:none;"></div>
 
+                <!-- 왕 크니까 왕 좋아 -->
                 <div class="setting-row">
                   <label class="setting-label">
                     <span class="skill-name king">왕 크니까 왕 좋아</span>
@@ -107,6 +121,7 @@
                 </div>
                 <div id="expert-king-info" class="expert-desc" style="display:none;"></div>
 
+                <!-- 씨앗은 덤이야 -->
                 <div class="setting-row">
                   <label class="setting-label">
                     <span class="skill-name seed-bonus">씨앗은 덤이야</span>
@@ -116,6 +131,7 @@
                 </div>
                 <div id="expert-seed-bonus-info" class="expert-desc" style="display:none;"></div>
 
+                <!-- 불붙은 괭이 -->
                 <div class="setting-row">
                   <label class="setting-label">
                     <span class="skill-name fire">불붙은 괭이</span>
@@ -127,33 +143,27 @@
 
               </div>
             </div>
+
           </div>
 
-          <!-- 오른쪽: 요리/가공 조합 -->
+          <!-- 오른쪽: 조합법 영역 -->
           <div class="info-right">
+            
+            <!-- 조합법 카드 -->
             <div class="card">
               <div class="card-header">
                 <h3 class="card-title">📖 조합법</h3>
-                <button class="toggle-materials-btn" onclick="toggleBasicMaterials()">
-                  💰 기본 재료 가격
-                  <span class="toggle-icon">▼</span>
-                </button>
-              </div>
-              <div class="basic-materials-toggle" id="basic-materials-section" style="display:none;">
-                <div class="basic-materials-inline">
-                  <span class="material-inline">소금 <strong>2G</strong></span>
-                  <span class="material-inline">요리용 달걀 <strong>3G</strong></span>
-                  <span class="material-inline">요리용 우유 <strong>3G</strong></span>
-                  <span class="material-inline">오일 <strong>4G</strong></span>
-                </div>
               </div>
 
-              <div class="card-body" style="padding:0;">
+              <div class="card-body" style="padding: 0;">
+                
+                <!-- 조합법 내부 탭 -->
                 <div class="recipe-tabs">
                   <button class="recipe-tab active" data-recipe-tab="cooking">🍳 요리</button>
                   <button class="recipe-tab" data-recipe-tab="processing">🔧 가공</button>
                 </div>
 
+                <!-- 요리 조합법 -->
                 <div id="cooking-recipes" class="recipe-content active">
                   <div class="recipe-content-inner">
                     <div class="table-controls-compact">
@@ -168,29 +178,34 @@
                       <table class="recipe-table-compact">
                         <thead>
                           <tr>
-                            <th>요리</th>
+                            <th>요리명</th>
                             <th>재료</th>
                             <th>최저가</th>
                             <th>최고가</th>
                           </tr>
                         </thead>
-                        <tbody id="recipe-tbody"></tbody>
+                        <tbody id="recipe-tbody">
+                          <!-- JS로 동적 생성 -->
+                        </tbody>
                       </table>
                     </div>
                   </div>
                 </div>
 
+                <!-- 가공 조합법 -->
                 <div id="processing-recipes" class="recipe-content">
                   <div class="recipe-content-inner">
                     <div class="table-wrapper-compact">
                       <table class="processing-table-compact">
                         <thead>
                           <tr>
-                            <th>항목</th>
+                            <th>가공품</th>
                             <th>재료</th>
                           </tr>
                         </thead>
-                        <tbody id="processing-tbody"></tbody>
+                        <tbody id="processing-tbody">
+                          <!-- JS로 동적 생성 -->
+                        </tbody>
                       </table>
                     </div>
                   </div>
@@ -198,6 +213,7 @@
 
               </div>
             </div>
+
           </div>
 
         </div>
@@ -206,9 +222,12 @@
       <!-- 스태미나 탭 -->
       <div id="tab-stamina" class="tab-content" style="display:none;">
         <h2 class="content-title">스태미나 계산</h2>
+        
         <div class="stamina-container">
           <div class="card">
             <div class="card-body">
+              
+              <!-- 입력 영역 -->
               <div id="stamina-inputs-container" class="stamina-inputs-container">
                 <div class="stamina-input-row" id="input-row-1">
                   <div class="stamina-input-group">
@@ -216,6 +235,7 @@
                       스태미나
                       <input type="number" id="stamina-input-1" class="stamina-input" placeholder="3300" min="0" step="7">
                     </label>
+                    
                     <label class="stamina-label">
                       작물
                       <select id="crop-select-1" class="stamina-select">
@@ -227,35 +247,56 @@
                   </div>
                 </div>
               </div>
-
+              
+              <!-- 전문가 정보 -->
               <div class="expert-info-text">
                 <span id="farming-expert-info">괭이 0강, 자연이 주는 선물 LV0, 불붙은 괭이 LV0</span>
               </div>
-
+              
+              <!-- 버튼 -->
               <div class="btn-actions">
                 <button class="btn-add" onclick="addStaminaInput()">+ 추가</button>
                 <button class="btn-calculate" onclick="calculateStamina()">계산하기</button>
               </div>
-
+              
+              <!-- 결과 영역 -->
               <div id="stamina-result-card" style="display:none;">
                 <h4 class="result-section-title">🌱 획득 정보</h4>
-                <div id="result-body"></div>
+                <div id="result-body">
+                  <!-- 결과가 여기 표시됨 -->
+                </div>
               </div>
-
+              
             </div>
           </div>
         </div>
       </div>
 
+      <!-- 채집/수확 탭 -->
+      <div id="tab-farm" class="tab-content" style="display:none;">
+        <h2 class="content-title">채집/수확</h2>
+        <p style="text-align: center; color: #999; padding: 40px;">개발 중입니다...</p>
+      </div>
+
+      <!-- 요리 탭 -->
+      <div id="tab-cook" class="tab-content" style="display:none;">
+        <h2 class="content-title">요리</h2>
+        <p style="text-align: center; color: #999; padding: 40px;">개발 중입니다...</p>
+      </div>
+
     </section>
   </main>
 
+  <!-- ===== 푸터 ===== -->
   <footer class="footer">© 1x0x7</footer>
 
-  <!-- JS -->
+  <!-- 공통 스크립트 -->
   <script src="js/script.js"></script>
+  <!-- 정보 탭 입력 스크립트 -->
   <script src="js/farming-info.js"></script>
+  <!-- 조합법 스크립트 -->
   <script src="js/farming-recipes.js"></script>
+  <!-- 스태미나 계산 스크립트 -->
   <script src="js/farming-stamina.js"></script>
 
 </body>

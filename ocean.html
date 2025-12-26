@@ -10,10 +10,14 @@
   <link rel="stylesheet" href="css/base.css" />
   <link rel="stylesheet" href="css/layout.css" />
   <link rel="stylesheet" href="css/components.css" />
-  <link rel="stylesheet" href="css/ocean-info.css" />
-  <link rel="stylesheet" href="css/ocean-recipes.css" />
-  <link rel="stylesheet" href="css/ocean-stamina.css" />
-  <link rel="stylesheet" href="css/ocean-icon.css" />
+  
+  <!-- 공통 스타일 -->
+  <link rel="stylesheet" href="css/common-info.css" />
+  <link rel="stylesheet" href="css/common-recipes.css" />
+  <link rel="stylesheet" href="css/common-stamina.css" />
+  
+  <!-- 해양 전용 스타일 -->
+  <link rel="stylesheet" href="css/ocean-custom.css" />
   <link rel="stylesheet" href="css/ocean.css" />
 </head>
 
@@ -63,9 +67,9 @@
               <div class="card-body">
 
                 <!-- 낚싯대 스펙 -->
-                <div class="setting-row hoe-spec-row">
-                  <label class="setting-label hoe-spec-label">낚싯대 스펙</label>
-                  <input type="number" id="info-expert-rod" class="setting-input" placeholder="예) 10" min="1" max="15">
+                <div class="setting-row tool-spec-row">
+                  <label class="setting-label tool-spec-label">낚싯대 스펙</label>
+                  <input type="number" id="rod-level" class="setting-input" min="1" max="15">
                 </div>
 
                 <!-- 조개 좀 사조개 -->
@@ -168,12 +172,22 @@
           <!-- 오른쪽: 조합법 영역 -->
           <div class="info-right">
             
-            <!-- 조합법 탭 -->
+            <!-- 조합법 카드 -->
             <div class="card">
               <div class="card-header">
                 <h3 class="card-title">📖 조합법</h3>
+                <button class="toggle-materials-btn" onclick="toggleBasicMaterials()" style="display:none;">
+                  💰 기본 재료 가격
+                  <span class="toggle-icon">▼</span>
+                </button>
               </div>
               
+              <div class="basic-materials-toggle" id="basic-materials-section" style="display:none;">
+                <div class="basic-materials-inline">
+                  <!-- 해양은 기본 재료가 없으므로 비워둠 -->
+                </div>
+              </div>
+
               <div class="card-body" style="padding: 0;">
                 
                 <!-- 조합법 내부 탭 -->
@@ -251,7 +265,7 @@
                       <table class="recipe-table-compact">
                         <thead>
                           <tr>
-                            <th>품목</th>
+                            <th>품목명</th>
                             <th>재료</th>
                             <th>최저가</th>
                             <th>최고가</th>
@@ -270,6 +284,61 @@
 
           </div>
 
+        </div>
+      </div>
+
+      <!-- 스태미나 탭 -->
+      <div id="tab-stamina" class="tab-content" style="display:none;">
+        <h2 class="content-title">스태미나 계산</h2>
+        
+        <div class="stamina-container">
+          <div class="card">
+            <div class="card-body">
+              
+              <!-- 입력 영역 -->
+              <div id="stamina-inputs-container" class="stamina-inputs-container">
+                <div class="stamina-input-row" id="input-row-1">
+                  <div class="stamina-input-group">
+                    <label class="stamina-label">
+                      스태미나
+                      <input type="number" id="stamina-input-1" class="stamina-input" placeholder="3300" min="0" step="15">
+                    </label>
+                    
+                    <label class="stamina-label">
+                      어패류
+                      <select id="fish-select-1" class="stamina-select">
+                        <option value="oyster">굴</option>
+                        <option value="conch">소라</option>
+                        <option value="octopus">문어</option>
+                        <option value="seaweed">미역</option>
+                        <option value="urchin">성게</option>
+                      </select>
+                    </label>
+                  </div>
+                </div>
+              </div>
+              
+              <!-- 전문가 정보 -->
+              <div class="expert-info-text">
+                <span id="ocean-expert-info">낚싯대 0강, 폭풍의 물질꾼 LV0, 별별별! LV0, 조개 무한리필 LV0</span>
+              </div>
+              
+              <!-- 버튼 -->
+              <div class="btn-actions">
+                <button class="btn-add" onclick="addStaminaInput()">+ 추가</button>
+                <button class="btn-calculate" onclick="calculateStamina()">계산하기</button>
+              </div>
+              
+              <!-- 결과 영역 -->
+              <div id="stamina-result-card" style="display:none;">
+                <h4 class="result-section-title">🌊 획득 정보</h4>
+                <div id="result-body">
+                  <!-- 결과가 여기 표시됨 -->
+                </div>
+              </div>
+              
+            </div>
+          </div>
         </div>
       </div>
 
@@ -548,61 +617,6 @@
             <div class="result-section">
               <h4>🔹 필요 꽃</h4>
               <div id="result-flower-3"></div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- 스태미나 탭 -->
-      <div id="tab-stamina" class="tab-content" style="display:none;">
-        <h2 class="content-title">스태미나 계산</h2>
-        
-        <div class="stamina-container">
-          <div class="card">
-            <div class="card-body">
-              
-              <!-- 입력 영역 -->
-              <div id="stamina-inputs-container" class="stamina-inputs-container">
-                <div class="stamina-input-row" id="input-row-1">
-                  <div class="stamina-input-group">
-                    <label class="stamina-label">
-                      스태미나
-                      <input type="number" id="stamina-input-1" class="stamina-input" placeholder="3300" min="0" step="15">
-                    </label>
-                    
-                    <label class="stamina-label">
-                      어패류
-                      <select id="fish-select-1" class="stamina-select">
-                        <option value="oyster">굴</option>
-                        <option value="conch">소라</option>
-                        <option value="octopus">문어</option>
-                        <option value="seaweed">미역</option>
-                        <option value="urchin">성게</option>
-                      </select>
-                    </label>
-                  </div>
-                </div>
-              </div>
-              
-              <!-- 전문가 정보 -->
-              <div class="expert-info-text">
-                <span id="ocean-expert-info">낚싯대 0강, 폭풍의 물질꾼 LV0, 별별별! LV0, 조개 무한리필 LV0</span>
-              </div>
-              
-              <!-- 버튼 -->
-              <div class="btn-actions">
-                <button class="btn-add" onclick="addStaminaInput()">+ 추가</button>
-                <button class="btn-calculate" onclick="calculateStamina()">계산하기</button>
-              </div>
-              
-              <!-- 결과 영역 -->
-              <div id="stamina-result-card" style="display:none;">
-                <h4 class="result-section-title">🌊 획득 정보</h4>
-                <div id="result-body">
-                  <!-- 결과가 여기 표시됨 -->
-                </div>
-              </div>
-              
             </div>
           </div>
         </div>

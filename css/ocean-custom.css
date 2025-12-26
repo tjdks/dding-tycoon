@@ -1,0 +1,25 @@
+/* =========================
+   해양 전용 스타일
+   - 스킬 색상만 정의
+========================= */
+
+/* 해양 스킬 색상 */
+.skill-name.gift {
+  color: #915ce0;
+}
+
+.skill-name.harvest {
+  color: #31a552;
+}
+
+.skill-name.pot {
+  color: #369de7;
+}
+
+.skill-name.money {
+  color: #edbc40;
+}
+
+.skill-name.king {
+  color: #915ce0;
+}

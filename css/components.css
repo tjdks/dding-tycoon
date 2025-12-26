@@ -98,6 +98,8 @@
   padding: var(--spacing-xl);
   box-shadow: var(--shadow-lg);
   transition: box-shadow var(--transition-base);
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .card:hover {
